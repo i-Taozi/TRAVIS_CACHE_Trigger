@@ -1,0 +1,349 @@
+1.4.4
+  * External data support returned
+  * Added implementation of getDate(int, Calendar)
+
+1.4.3
+  * "No authentication information found: Basic authentication expected" issue fixed because of JDK changes
+  * Removed External Data support
+
+1.4.2
+  * Force connection close to avoid connections in CLOSE_WAIT state
+  * Less allocations on connection
+  * Cleanup
+
+1.4.1
+  * Remove unnecessary slash in DB url (now every request is 1 byte smaller :) )
+  * Lz4 forced to use the fastest coded
+  * Removed param descriptions to minimize driver size (-2.5kb to the size)
+
+1.4.0
+  * Fixed issue where full response form DB was read into the memory. Now data is read while you iterate the ResultSet
+  * Removed "extremes=0" from the query as this is default parameter in CH
+  * Removed "query_id=xxx" from the query as this is not mandatory parameter. You need to explicitly enable it
+  * Added support for dynamic number of parameters in IN clause
+  * Removed LogProxy class
+  * Small optimizations and refactortings
+
+1.3.0
+  * Refactorings, cleanup, micro optimizations
+  * Support for JSON, JSONCompact selects
+
+1.2.0
+  * Added more utility methods to the CopyManager
+  * Correctly reset PreparedStatement
+  * correct module info for Java 9
+
+1.1.1
+  * CopyManager now implements Closeable
+  * Added methods to work with files directly
+  * Add null checks within CopyManager
+
+1.1.0
+  * CopyManager added. Allows you to send/retrieve the data from/to the files
+  * Less allocations for batch processing
+  * Checkstyle applied for tests
+
+1.0.0
+  * Allow to set unknown number of values for IN clause
+  * Smaller size. 850kb vs 5.6mb of the original driver (**7x jar size improvement**)
+  * A bunch of micro optimizations were applied (for example, **batch inserts are now 40% faster**)
+  * Checkstyle applied to the code to make contributions easier
+  * All unnecessary dependencies (Apache HttpClient, Jackson, Guava) were removed
+  * Only 2 dependencies left: lz4 and slf4j and updated to the latest version
+  * Compiled against Java 8
+  * Cleaned up all code and IDE warnings
+  * Decreased visibility of public methods
+  * Simplified code structure, removed unnecessary inheritance, removed many useless legacy code
+
+0.1.55
+NOTE: behavior for byte[] parameters changed. See https://github.com/yandex/clickhouse-jdbc/pull/352
+  * support for sending stream of CSV data
+  * support for 307 redirects and paths in url (when ClickHouse is behind balancer)
+  * query parameters and types handling improved
+  * strict ssl fixed
+  * support for array of decimals
+
+0.1.54
+  * added error codes
+  * multi-line statement parsing fixed
+  * correct class names for arrays
+  * prepared statements with functions fixed
+  * max_partitions_per_insert_block, max_insert_block_size, insert_deduplicate, insert_distributed_sync added
+  * BalancedClickHouseDatasource parameters handling fixed
+  * DateTime with timezone type support. NOTE: zones in values parsing are not handled
+  * prepared statements with back quotes fixed
+
+0.1.53
+  * fixed timezone initialization
+  * added max_memory_usage_for_user and max_memory_usage_for_all_queries
+
+0.1.52
+  * fixed executeQuery additionalParams copy
+
+0.1.51
+  * fixed sendStream
+  * fixed LEB128 encoding
+  * cancel by query_id implementation
+  * improved ResultSetMetadata for Decimal data types
+  * PreparedStatement single and double quotes support
+  * NoopHostnameVerifier for sslMode none
+
+0.1.50
+  * Array(FixedString(N)) insert support
+  * ENABLE_OPTIMIZE_PREDICATE_EXPRESSION query param
+  * clearBatch implementation
+  * getMetadata implementation if query was not executed yet
+  * setQueryTimeout implementation
+  * RowBinaryInputStream to support nullability
+  * test plugins settings updated
+
+0.1.49 skipped
+
+0.1.48
+  * SELECT_SEQUENTIAL_CONSISTENCY param
+  * scrollable ResultSet
+  * metadata updates
+  * Decimal type
+
+0.1.47
+  * connection cleaner in daemon mode
+  * insert-quorum params
+
+0.1.46
+  * nullable in RowBinaryStream
+  * fix null in arrays
+  * database regex (asterisks and dashes allowed)
+
+0.1.45
+  * added shaded version of the jar
+  * http authorization header
+  * setTime implementation
+
+0.1.44
+  * add public methods to BalancedClickhouseDataSource
+  * TYPE_NAME without Nullable
+  * sendRowBinaryStream with additional parameters
+  * support constant NULL values in prepared statements
+  * fix parsing parameter at last position of statement
+
+0.1.43
+  * fix determining statement type in presence of comments
+  * improved support for prepared statements, including batch inserts
+  * fix parameters copy
+  * support for writing UUIDs in binary stream
+  * removed joda-time dependency
+    migration node for users of ClickHouseRowBinaryStream:
+        manually calculate daysSinceEpoch and use method writeUInt16():
+            for joda-time: Days.daysBetween(LocalDate.parse("1970-01-01"), date).getDays()
+            for java 8: LocalDate.toEpochDay())
+        or use conversion to Date:
+            for joda-time: localDate.toDate()
+            for java 8: java.sql.Date.valueOf(LocalDate date)
+
+0.1.42
+  * additional query params for executeBatch
+  * query preprocessing optimization
+  * UUID support
+  * isClosed
+  * isLast
+  * isNullable
+  * default connection config for pooling connection manager
+
+0.1.41
+  * arbitrary query params
+  * checksum fix
+
+0.1.40
+  * fix encoding
+  * insert array of nullables
+  * NaN support
+  * fix checksum calculation
+
+0.1.39
+  * fix nullable metadata
+  * fix nested arrays insert
+
+0.1.38
+  * decompress errors on inserts
+  * handle comments in bind variables parsing
+
+0.1.37
+  * writeBytes for binary
+  * fix for read after last
+  * zero-valued dates are returned as nul
+  * column size metadata fixes
+
+0.1.36
+  * allow send stream in native format
+
+0.1.35
+  * with totals support
+  * nullable metadata fixes
+  * specialize on connection type in balanced data source
+
+0.1.34
+  * support for select queries starting with "WITH ... SELECT"
+  * add executeQueryClickhouseResponse
+  * add session query parameters
+
+0.1.33
+  * json parse optitimzation
+  * BalancedClickHouseDataSource url pattern fix
+
+0.1.32
+  * fix getObject() for DOUBLE
+
+0.1.31
+  * fix: parse errors compressed and uncompressed
+
+0.1.30
+  * fix batch insert with 'values' column
+
+0.1.29
+  * fix for empty long arrays
+  * use_objects_in_arrays option
+  * position of missing placeholder in error
+  * fix selectObject and types for nullable columns
+
+0.1.28
+  * fix getUpdateCount
+  * handle null string values correctly
+  * inner tables in metadata
+
+0.1.27
+  * setCatalog/getCatalog
+  * fix `ClickHousePreparedStatement.setObject(int, List<?>)` for Number
+
+0.1.26
+  NOTE: starting from this release local application timezone is used by default for Date conversions.
+  Time, Timestamp are converted using server timezone as starting from release 0.1.18.
+  Set use_server_time_zone_for_dates = true to use server timezone for Date conversions as before.
+  * use local timezone for Date conversions
+  * more arrays support
+  * fix metadata request from system.columns
+  * pass correct properties to initTimeZone
+
+0.1.25
+  * binary format fixes
+  * extremes fix
+
+0.1.24
+  * max_query_size property
+
+0.1.23
+  NOTE: default connection timeout had changed to conform with ClickHouse core and support IDEs in default settings.
+  The setting may be overridden by passing ClickHouseProperties or Properties on connection init.
+  * default connection timeout 50ms -> 10s
+  * fixed metadata on mixed-case identifiers
+
+0.1.22
+  * preferred_block_size_bytes property
+
+0.1.21
+  * getSchema/setSchema
+  * table types in database metadata
+  * BalancedDataSource
+  * ssl/tls support
+  * RowBinary format for inserts
+
+0.1.20
+  * checksum validation when using compress/decompress
+  * max_memory_usage param
+  * set boolean params as 0/1
+  * fix getTableTypes
+  * extra trace logging
+  * null values support
+
+0.1.19
+  * fix getColumns
+
+0.1.18
+  NOTE: starting from this release server timezone is used by default.
+  This will work with server version >= 1.1.54159.
+  Set use_server_time_zone = false and use_time_zone to desired timezone name for using with earlier server versions.
+  * use server timezone
+  * is_generatedcolumn support
+  * fix error parsing
+  * escaping of non IOS-8859-1 characters
+
+0.1.17
+  * fix passing additionalDBParams
+  * add query_id param
+  * add CH params to executeQuery in preparedStatement
+  * fix setting properties
+  * propagate parameters from jdbc url
+
+0.1.16
+  * fix use Property class for configuration
+  * Add settings to ClickHouseQueryParam
+
+0.1.15
+  * lz4 support
+  * External data support
+  * Disable extremes for ResultSet query methods
+  * Consistent charsets and rounding
+  * Fix for configuration options
+
+0.1.14
+  * Testing with travis
+  * Unsigned types support
+  * Improvement on setMaxRows
+  * Configuration options for external sort and aggregation
+
+0.1.13
+  * Lazy init on cleaner executor
+  * Auto-load meta-file
+  * Implemented getArray()
+  * Fix exception specifier
+  * JDBC compliance improvements
+
+0.1.12
+  * Fix setArray
+  * Improve isValid
+  * Fix single column result set
+
+0.1.11
+  * Fix exception specifier
+  * Fix SimpleDateFormat usage
+
+0.1.10
+  * Support ipv6 jdbc url
+  * Return correct default value for COLUMN_DEF
+  * getColumnClassName
+
+0.1.9
+  * Skip jdbc url to another DB
+  * Statement to ResultSet
+  * Correct return value for execute(sql)
+  * Arrays support
+
+0.1.8
+  * Improved performance of batch operations
+  * Don't create cleaner executer for every connection
+
+0.1.7
+  * Don't set implicit max_execution_time
+  * LogProxy only for trace
+
+0.1.6
+  * Don't fail on fetchSize hint
+
+0.1.5
+  * Nan and inf values support for double
+  * Fix ClickHouseException
+  * Database from properties priority over url
+
+0.1.4
+  * Fix batch support
+  * Fix timestamp mapping
+
+0.1.3
+  * Batch support
+
+0.1.2
+  * BigDecimal support
+  * Assembly plugin
+  * Fix isSelect
+
+0.1.1
+  * Initial release
