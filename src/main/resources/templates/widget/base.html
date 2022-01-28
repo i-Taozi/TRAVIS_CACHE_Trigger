@@ -1,0 +1,34 @@
+<!-- Standard Meta -->
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+<title th:utext="${title}">Title</title>
+<link rel="shortcut icon" th:href="@{/favicon.ico}"/>
+<!--<link rel="icon" type="image/jpeg" href="@{/assets/img/logo.png}"/>-->
+<link rel="bookmark" th:href="@{/favicon.ico}"/>
+<!--<link rel="bookmark" type="image/jpeg" th:href="@{/assets/img/logo.png}"/>-->
+
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/base.css}">
+<!--<link rel="stylesheet" type="text/css" th:href="@{/assets/vendor/font-awesome-4.7.0/css/font-awesome.css}">-->
+<link rel="stylesheet" type="text/css" th:href="@{/assets/vendor/iconfont/iconfont.css}">
+
+<!--<link rel="stylesheet" type="text/css" th:href="@{/assets/vendor/jquery-easyui-1.9.7/themes/color.css}">-->
+<link rel="stylesheet" type="text/css" th:href="@{/assets/vendor/jquery-easyui-1.9.7/themes/gray/easyui.css}">
+
+<link rel="stylesheet" type="text/css" th:href="@{/assets/vendor/easyui-plus-1.0.0/themes/blue/easyui.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/assets/vendor/easyui-plus-1.0.0/css/easyui.plus.css}">
+
+<div th:replace="./widget/basejs"></div>
+
+<script type="text/javascript" charset="UTF-8" th:src="@{/assets/vendor/jquery/jquery-1.12.4.min.js}"></script>
+<script type="text/javascript" charset="UTF-8"
+        th:src="@{/assets/vendor/jquery-easyui-1.9.7/jquery.easyui.min.js}"></script>
+<script type="text/javascript" charset="UTF-8"
+        th:src="@{/assets/vendor/jquery-easyui-1.9.7/locale/easyui-lang-zh_CN.js}"></script>
+
+<script type="text/javascript" charset="UTF-8" th:src="@{/assets/js/url.js}"></script>
+<script type="text/javascript" charset="UTF-8" th:src="@{/assets/js/util.js}"></script>
+<script type="text/javascript" charset="UTF-8" th:src="@{/assets/vendor/easyui-plus-1.0.0/js/easyui.plus.js}"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" charset="UTF-8" th:src="@{/assets/vendor/html5shiv-3.7.3.min.js}"></script>
+<![endif]-->
