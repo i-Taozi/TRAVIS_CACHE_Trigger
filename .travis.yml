@@ -19,3 +19,7 @@ install:
 script:
   - travis_wait 30 mvn install -f driver/pom.xml -Dfailsafe.timeout=0
   - travis_wait 30 mvn install -f server/pom.xml -Dfailsafe.timeout=0
+
+cache:
+  directories:
+  - $HOME/.m2
