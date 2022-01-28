@@ -1,98 +1,90 @@
-# Contributing
+# Contributing to the Static Analysis Suite
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-[![Semantic Versioning](https://img.shields.io/SemVer/2.0.0.png)](http://semver.org/spec/v2.0.0.html)
-[![Gitter](https://badges.gitter.im/Syncleus/aparapi.svg)](https://gitter.im/Syncleus/aparapi?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+This page provides information about contributing code to Jenkins' Warnings plug-in.
 
-When contributing to this repository, it is usually a good idea to first discuss the change you
-wish to make via issue, email, or any other method with the owners of this repository before
-making a change. This could potentially save a lot of wasted hours.
+:exclamation: There's a lot more to the Jenkins project than just code. For information on contributing to the Jenkins'
+project overall, check out [Jenkins' contributing landing page](https://jenkins.io/participate/).
+ 
+## Parser Implementations
 
-Please note we have a code of conduct, please follow it in all your interactions with the project.
+If you are planning to provide your own parser, please also have a look at the project 
+[Static Analysis Model and Parsers](https://github.com/jenkinsci/analysis-model). Here, all parsers need to be 
+added first. The Jenkins Warnings Plug-in does not include the parsers anymore, it links the parsers using the 
+analysis-model library. You still need to add a reference to the new parser afterwards in order to get the parser
+represented in the UI. 
 
-## Development
+## Getting started
 
-### Commit Message Format
+1. Fork the repository on GitHub.
+2. Clone the forked repository to your machine.
+3. Install the development tools. In order to contribute to Jenkins' Static Analysis Suite, you need the following tools:
+   * Java Development Kit (JDK) 8.
+   * Maven 3.3.9 or above. You can download it [here](https://maven.apache.org/download.cgi).
+   * Any IDE which supports importing Maven projects.
+4. Setup your development environment as described in 
+[Preparing for Plugin Development](https://jenkins.io/doc/developer/tutorial/prepare/).
 
-Starting version 1.3.3 and later all commits on the Syncleus Aparapi repository follow the
-[Conventional Changelog standard](https://github.com/conventional-changelog/conventional-changelog-eslint/blob/master/convention.md).
-It is a very simple format so you can still write commit messages by hand. However it is
-highly recommended developers install [Commitizen](https://commitizen.github.io/cz-cli/),
-it extends the git command and will make writing commit messages a breeze. All the Aparapi
-repositories are configured with local Commitizen configuration scripts.
+## Coding Guidelines
 
-Getting Commitizen installed is usually trivial, just install it via npm. You will also
-need to install the cz-customizable adapter which the Aparapi repository is configured
-to use.
+Start reading the code and you'll get the hang of it. A complete description of the 
+coding guidelines is part of a [separate GitHub repository](https://github.com/uhafner/codingstyle), which 
+is only available in German. 
 
-```bash
+For [IntelliJ IDEA](https://www.jetbrains.com/idea/) users: the coding style is stored in configuration files below the 
+`.idea` folder. If you import this project into IntelliJ this style will used automatically. 
 
-npm install -g commitizen@2.8.6 cz-customizable@4.0.0
-```
+Moreover (since this project is about static code analysis :wink:) a configuration for the following static code
+analysis tools is defined in the POM and the `etc` and `.idea` folders:
+- [Checkstyle](http://checkstyle.sourceforge.net/)
+- [PMD](https://pmd.github.io/)
+- [FindBugs](http://findbugs.sourceforge.net/) and [SpotBugs](https://spotbugs.github.io)
+- [Error Prone](http://errorprone.info)
+- [IntelliJ](https://www.jetbrains.com/help/idea/code-inspection.html)
 
-Below is an example of Commitizen in action. It replaces your usual `git commit` command
-with `git cz` instead. The new command takes all the same arguments however it leads you
-through an interactive process to generate the commit message.
+This configuration will be picked up automatically if you build the project using maven. If you install the CheckStyle 
+plugin of IntelliJ then the correct set of CheckStyle rules will used automatically. Moreover, the code formatter and 
+the inspection rules will be automatically picked up bey IntelliJ.
 
-![Commitizen friendly](http://aparapi.com/images/commitizen.gif)
+## Proposing Changes
 
-Commit messages are used to automatically generate our changelogs, and to ensure
-commits are searchable in a useful way. So please use the Commitizen tool and adhere to
-the commit message standard or else we cannot accept Pull Requests without editing
-them first.
+The Jenkins project source code repositories are hosted on GitHub. All proposed changes are submitted and code reviewed 
+using the [GitHub Pull Request](https://help.github.com/articles/about-pull-requests/) process.
 
-Below is an example of a properly formated commit message.
+To submit a pull request:
 
-```
-chore(Commitizen): Made repository Commitizen friendly.
+1. Commit changes and push them to your fork on GitHub.
+It is a good practice is to create branches instead of pushing to master.
+2. In GitHub Web UI click the **New Pull Request** button.
+3. Select `warnings-plugin` as **base fork** and `master` as **base**, then click **Create Pull Request**.
+4. Fill in the Pull Request description. It should reflect the changes, the reason behind the changes, and if available a
+reference to the Jenkins ticket in our [issue tracker](https://issues.jenkins-ci.org/).
+5. Click **Create Pull Request**.
+6. Wait for CI results, reviews. 
+7. Process the feedback (see previous step). If there are changes required, commit them in your local branch and push them
+again to GitHub. Your pull request will be updated automatically. Review comments for changed lines will become outdated.
 
-Added standard Commitizen configuration files to the repo along with all the custom rules.
+Once your Pull Request is ready to be merged, the repository maintainer will integrate it.
+There is no additional action required from pull request authors at this point.
 
-ISSUES CLOSED: #31
-```
+## Copyright
 
-### Pull Request Process
+Static Analysis Suite  is licensed under [MIT license](./LICENSE). We consider all contributions as MIT unless it's 
+explicitly stated otherwise. MIT-incompatible code contributions will be rejected.
+Contributions under MIT-compatible licenses may be also rejected if they are not ultimately necessary.
 
-1. Ensure that install or build dependencies do not appear in any commits in your code branch. 
-2. Ensure all commit messages follow the [Conventional Changelog](https://github.com/conventional-changelog/conventional-changelog-eslint/blob/master/convention.md)
-   standard explained earlier.
-3. Update the CONTRIBUTORS.md file to add your name to it if it isn't already there (one entry
-   per person).
-4. Adjust the project version to the new version that this Pull Request would represent. The
-   versioning scheme we use is [Semantic Versioning](http://semver.org/).
-5. Your pull request will either be approved or feedback will be given on what needs to be
-   fixed to get approval. We usually review and comment on Pull Requests within 48 hours.
+We **Do NOT** require pull request submitters to sign the 
+[contributor agreement](https://wiki.jenkins.io/display/JENKINS/Copyright+on+source+code)
+as long as the code is licensed under MIT and merged by one of the contributors with the signed agreement.
 
-### Making a Release
+## Continuous Integration
 
-Only administrators with privilages to push to the Aparapi Maven Central account can deploy releases. If this isn't you
-then you can just skip this section.
+The Jenkins project has a Continuous Integration server... powered by Jenkins, of course.
+The CI job for this project is located at [ci.jenkins.io](https://ci.jenkins.io/job/Plugins/job/warnings-plugin/).
 
-First ensure the package is prepared for the release process:
+# Links
 
-* Make sure any references to the version number in the readme is updated
-  * Version number in dependency maven snippet.
-  * Add new version to javadoc version list.
-* Ensure that none of the dependencies used are snapshots.
-* Update the changelog file.
-* Check that all Aparapi libraries used as dependencies point to the latest version.
-* After making the release go to the aparapi-docker project and push an image for the new aparapi version
+* [Jenkins Contribution Landing Page](https://jenkins.io/paricipate/)
+* [Jenkins IRC Channel](https://jenkins.io/chat/)
+* [Beginners Guide To Contributing](https://wiki.jenkins.io/display/JENKINS/Beginners+Guide+to+Contributing)
+* [List of newbie-friendly issues in the core](https://issues.jenkins-ci.org/issues/?jql=project%20%3D%20JENKINS%20AND%20status%20in%20(Open%2C%20%22In%20Progress%22%2C%20Reopened)%20AND%20component%20%3D%20core%20AND%20labels%20in%20(newbie-friendly))
 
-Next lets take a few steps to do the actual release:
-
-1.  Update everything listed above. Do **not** drop the package version's `-SNAPSHOT` suffix in master.
-2.  Create a release branch, but make sure never to push this branch to the server: `git checkout -b release`.
-3.  Update the README.md again to ensure travis badge and javadoc badge point to static tag and not latest.
-4.  Drop the `-SNAPSHOT` suffix from the package version.
-5.  Commit the current changes using a generic commit message such as `build(release): version 1.2.3`.
-6.  Fully test the software before deploying, run all tests and install locally to test against the examples package.
-    You can install the package locally with `mvn clean install`.
-7.  Once satisfied the package is stable deploy it to maven central by executing `mvn -P sign clean package deploy`.
-8.  If deployment was successful then create a new tag for the current version with the following command:
-    `git tag -a v1.2.3 -m "Version 1.2.3"`.
-9.  Push the newly created tags to the server: `git push origin v1.2.3:v1.2.3`.
-10. Go to Github and go to the release. Update the description with the changelog for the version and upload
-    all the artifacts in the target folder.
-10. Checkout master again and then delete the release branch: `git branch -D release`.
-11. Bump the snapshot version of the package to the next expected version, commiting the changes and pushing.
-12. Deploy the new snapshot to the snapshot repository (no need to sign): `mvn clean deploy`.
