@@ -1,6 +1,9 @@
+bin
 target
+.idea
 *.iml
 .classpath
+.settings/
 .project
-.settings
-\~*
+core/doc
+toolkit/doc
