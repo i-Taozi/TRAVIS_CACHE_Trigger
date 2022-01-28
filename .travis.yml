@@ -39,3 +39,8 @@ matrix:
   allow_failures:
     - jdk: openjdk9
     - jdk: openjdk10
+
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
