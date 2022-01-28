@@ -1,43 +1,21 @@
-sudo: required
-dist: xenial
 language: java
+
+os:
+  - linux
+
+branches:
+  only:
+  - develop
+  
 jdk:
   - openjdk8
-  - openjdk9
-  - openjdk10
-  - openjdk11
-  - openjdk12
-  - openjdk13
-  - openjdk14
-  - openjdk15
+
 before_script:
-- echo $JAVA_OPTS
-- export JAVA_OPTS=-Xmx1G
-install: true
-script:
-- sudo apt-get update && sudo apt-get install oracle-java8-installer
-- java -version
-script:
-- TERM=dumb ./gradlew assemble check --info --stacktrace
-- cd modules/minigl && TERM=dumb ../../gradlew clean test --rerun-tasks -Dtest.minigl_db_driver=postgres
-after_success: ".travis/update-gh-pages.sh"
-after_failure: ".travis/update-gh-pages.sh"
-env:
-  global:
-  - secure: hXRjDTr170qZNw4tCapT6pUAHi2vbFa1vB9BKA8AD/jHWivNehgBJBLsqM9KmWc0PAwevzB0iH6K+WBBH7x98d7J3K0R6Mdz3AMNK48wN6UWOXJtMPmbi2+deDinDracE0fH3zRFpZygaqcSmGZlkr//jKB8ODIO+MBETTlb0dc=
-notifications:
-  slack:
-    secure: HikbVVS4pi1VI1q0W0Kkh7NMXmrtDFw+ulqBpKA4VT+2LyOxsF18Bg+j40+hNonfTRPTuBYuOuU0wA79u1GBZRKdm2Ky3CGd1rohG53ONOk3I+J1K1W0hfzITZ+nkrB//+oAYJBADhZJQZ8PwjbhA4wxsz+k4XOaScwbTiemt8Y=
-matrix:
-  include:
-    - jdk: oraclejdk8
-      dist: trusty
-  allow_failures:
-    - jdk: openjdk9
-    - jdk: openjdk10
+  - echo "MAVEN_OPTS='-Xmx3g'" > ~/.mavenrc
 
+install:
+#  - mvn install dependency:go-offline -Pskip-formatter -DskipTests=true -q -f driver/pom.xml -Dfailsafe.timeout=0
 
-cache:
-  directories:
-  - $HOME/.gradle/caches/
-  - $HOME/.gradle/wrapper/
+script:
+  - travis_wait 30 mvn install -f driver/pom.xml -Dfailsafe.timeout=0
+  - travis_wait 30 mvn install -f server/pom.xml -Dfailsafe.timeout=0
