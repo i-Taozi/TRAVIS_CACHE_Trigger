@@ -1,498 +1,561 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.jsqlparser</groupId>
-    <artifactId>jsqlparser</artifactId>
-    <version>4.2-SNAPSHOT</version>
-    <name>JSQLParser library</name> 
-    <inceptionYear>2004</inceptionYear>
-    <organization>
-        <name>JSQLParser</name> 
-    </organization>
-    <packaging>bundle</packaging>
-    <url>https://github.com/JSQLParser/JSqlParser</url>
+    <packaging>pom</packaging>
 
-    <licenses>
-        <license>
-            <name>GNU Library or Lesser General Public License (LGPL) V2.1</name>
-            <url>http://www.gnu.org/licenses/lgpl-2.1.html</url>
-            <distribution>repo</distribution>
-        </license>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
+    <modules>
+        <module>datasafe-types-api</module>
+        <module>datasafe-runtime-delegate</module>
+        <module>datasafe-business</module>
+        <module>datasafe-metainfo</module>
+        <module>datasafe-privatestore</module>
+        <module>datasafe-directory</module>
+        <module>datasafe-encryption</module>
+        <module>datasafe-inbox</module>
+        <module>datasafe-storage</module>
+        <module>datasafe-rest-impl</module>
+        <module>datasafe-examples</module>
+        <module>datasafe-simple-adapter</module>
+        <module>datasafe-test-storages</module>
+        <module>datasafe-long-run-tests</module>
+        <module>datasafe-cli</module>
+        <module>last-module-codecoverage-check</module>
+    </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.7</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>2.28.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.16.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.10</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.200</version>
-            <scope>test</scope>
-        </dependency>
-		
-    </dependencies>
-
-    <developers>
-        <developer>
-            <name>Tobias Warneke</name>
-            <email>t.warneke@gmx.net</email>
-        </developer>
-    </developers>
-
-    <distributionManagement>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
-
+    <groupId>de.adorsys</groupId>
+    <artifactId>datasafe</artifactId>
+    <version>1.0.4-SNAPSHOT</version>
+    <name>datasafe</name>
+    <description>Datasafe</description>
+    <url>https://github.com/adorsys/datasafe</url>
     <scm>
-        <connection>scm:git:https://github.com/JSQLParser/JSqlParser.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com:JSQLParser/JSqlParser.git</developerConnection>
-        <url>https://github.com/JSQLParser/JSqlParser.git</url>
+        <connection>scm:git@github.com:adorsys/datasafe.git</connection>
+        <developerConnection>scm:git:git@github.com:adorsys/datasafe.git</developerConnection>
+        <url>git@github.com:adorsys/datasafe.git</url>
         <tag>HEAD</tag>
     </scm>
 
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>https://github.com/JSQLParser/JSqlParser/issues</url>
-    </issueManagement>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Peter Spiessbach</name>
+            <email>psp@adorsys.de</email>
+            <organization>adorsys</organization>
+            <organizationUrl>https://adorsys.de/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Maksym Hryshchenko</name>
+            <email>mhr@adorsys.de</email>
+            <organization>adorsys</organization>
+            <organizationUrl>https://adorsys.de/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Valentyn Berezin</name>
+            <email>vbeex@adorsys.de</email>
+            <organization>adorsys</organization>
+            <organizationUrl>https://adorsys.de/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Ihor Yatsenko</name>
+            <email>yatsenko.ihor@gmail.com</email>
+            <organization>adorsys</organization>
+            <organizationUrl>https://adorsys.de/</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <doclint>none</doclint>
+        <src.dir>src/main/java</src.dir>
+        <test.src.dir>src/test/java</test.src.dir>
+
+        <!-- TODO: should be maven.multiModuleProjectDirectory but not using it because Intellij does not support it -->
+        <jacoco.reportPath>${basedir}/../../target/jacoco.exec</jacoco.reportPath>
+        <jacoco.e2e.reportPath>${basedir}/../target/jacoco-e2e.exec</jacoco.e2e.reportPath>
+
+        <java.version>1.8</java.version>
+        <graal.version>19.2.0</graal.version>
+        <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
+        <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
+        <lombok.version>1.18.6</lombok.version>
+        <gson.version>2.8.5</gson.version>
+        <dagger.version>2.24</dagger.version>
+        <guava.version>27.0.1-jre</guava.version>
+        <picocli.version>4.0.3</picocli.version>
+        <jupiter.version>5.4.1</jupiter.version>
+        <junit.platform.version>1.4.1</junit.platform.version>
+        <assertj.version>3.12.2</assertj.version>
+        <mockito.version>2.25.1</mockito.version>
+        <surefire.version>2.22.1</surefire.version>
+        <compress.version>1.19</compress.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <deploy.disabled>false</deploy.disabled>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <testcontainers.version>1.11.2</testcontainers.version>
+        <jacoco.version>0.8.4</jacoco.version>
+        <commons.io.version>2.5</commons.io.version>
+        <slf4j-simple.version>1.7.25</slf4j-simple.version>
+        <drools.version>6.5.0.Final</drools.version>
+        <lombok-maven-plugin.version>1.18.6.0</lombok-maven-plugin.version>
+        <awaitility.version>3.0.0</awaitility.version>
+        <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
+        <amazon.aws.version>1.11.538</amazon.aws.version>
+        <jsr-305.version>3.0.0</jsr-305.version>
+        <javax-inject.version>1</javax-inject.version>
+        <javapoet.version>1.9.0</javapoet.version>
+        <auto-service.version>1.0-rc4</auto-service.version>
+        <compile-testing.version>0.18</compile-testing.version>
+        <maven.jar.plugin>3.1.0</maven.jar.plugin>
+        <spring.jdbc>5.1.8.RELEASE</spring.jdbc>
+        <hikari.cp>3.3.1</hikari.cp>
+        <h2.database>1.4.199</h2.database>
+        <mysql.version>8.0.16</mysql.version>
+        <liquibase>3.6.1</liquibase>
+        <spring.framework.version>5.1.7.RELEASE</spring.framework.version>
+        <spring.framework.boot.version>2.1.5.RELEASE</spring.framework.boot.version>
+        <siv-mode.version>1.3.1</siv-mode.version>
+        <jackson.version>2.11.2</jackson.version>
+        <keymanagement.version>0.0.6</keymanagement.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.adorsys.keymanagement</groupId>
+                <artifactId>api</artifactId>
+                <version>${keymanagement.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.adorsys.keymanagement</groupId>
+                <artifactId>juggler-bouncycastle</artifactId>
+                <version>${keymanagement.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.xerial</groupId>
+                        <artifactId>sqlite-jdbc</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger</artifactId>
+                <version>${dagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>info.picocli</groupId>
+                <artifactId>picocli</artifactId>
+                <version>${picocli.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-simple.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j-simple.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>${jsr-305.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>${javax-inject.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup</groupId>
+                <artifactId>javapoet</artifactId>
+                <version>${javapoet.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.auto.service</groupId>
+                <artifactId>auto-service</artifactId>
+                <version>${auto-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.cryptomator</groupId>
+                <artifactId>siv-mode</artifactId>
+                <version>${siv-mode.version}</version>
+            </dependency>
+
+            <!-- Storages -->
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-s3</artifactId>
+                <version>${amazon.aws.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-core</artifactId>
+                <version>${amazon.aws.version}</version>
+            </dependency>
+
+            <!--
+            You will still need to add `test` scope when using dependency, here it is just for clarity, because
+            it is not inherited
+            -->
+            <dependency>
+                <groupId>com.google.testing.compile</groupId>
+                <artifactId>compile-testing</artifactId>
+                <version>${compile-testing.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-commons</artifactId>
+                <version>${junit.platform.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers</artifactId>
+                <version>${testcontainers.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>${compress.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-core</artifactId>
+                <version>${drools.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-compiler</artifactId>
+                <version>${drools.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.awaitility</groupId>
+                <artifactId>awaitility</artifactId>
+                <version>${awaitility.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>${h2.database}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring.jdbc}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${hikari.cp}</version>
+            </dependency>
+	    </dependencies>
+	</dependencyManagement>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <sourceDirectory>${src.dir}</sourceDirectory>
+        <testSourceDirectory>${test.src.dir}</testSourceDirectory>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.14.0</version>
-                <configuration>
-                    <rulesets>
-                        <!-- Custom local file system rule set -->
-                        <ruleset>${basedir}/ruleset.xml</ruleset>
-                    </rulesets>
-                    <excludes>
-                        <exclude>**/*Bean.java</exclude>
-                        <exclude>**/generated/*.java</exclude>
-                    </excludes>
-                    <excludeRoots>
-                        <excludeRoot>target/generated-sources</excludeRoot>
-                        <excludeRoot>target/generated-test-sources</excludeRoot>
-                    </excludeRoots>
-                    <printFailingErrors>true</printFailingErrors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>pmd</id>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                        <phase>process-sources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>add-source</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>add-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>${project.build.directory}/generated-sources/javacc/</source>
-                                <source>${project.build.directory}/generated-sources/jjtree/</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <showWarnings>true</showWarnings>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <showDeprecation>true</showDeprecation>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>com.google.dagger</groupId>
+                            <artifactId>dagger-compiler</artifactId>
+                            <version>${dagger.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>de.adorsys</groupId>
+                            <artifactId>datasafe-runtime-delegate</artifactId>
+                            <version>${project.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.javacc.plugin</groupId>
-                <artifactId>javacc-maven-plugin</artifactId>
-                <version>3.0.3</version>
-
-                <!-- 
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>javacc-maven-plugin</artifactId>
-                <version>2.6</version>
-                --> 
-                
-                <executions>
-                    <execution>
-                        <id>javacc</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>jjtree-javacc</goal>
-                        </goals>
-                    </execution>
-                    
-                    <!-- execute JJTree explicitely in order to generate the *.jj file needed for JJDoc -->
-                    <execution>
-                        <id>jjtree</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>jjtree</goal>
-                        </goals>
-                    </execution>
-                    
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>net.java.dev.javacc</groupId>
-                        <artifactId>javacc</artifactId>
-                        <version>7.0.10</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <sourceIncludes>
-                        <sourceInclude>/target/generated-sources/javacc</sourceInclude>
-                    </sourceIncludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <version>1.17</version>
-                <configuration>
-                    <verbose>false</verbose>
-                    <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
-                    <canUpdateDescription>false</canUpdateDescription>
-                    <licenseName>dual_lgpl_ap2</licenseName>
-                    <licenseResolver>${project.baseUri}/src/license</licenseResolver>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>first</id>
-                        <goals>
-                            <goal>update-file-header</goal>
-                        </goals>
-                        <phase>process-sources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.3</version>
-                <configuration>
-                    <localCheckout>true</localCheckout>
-                    <pushChanges>false</pushChanges>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.9.5</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <configuration>
-                            <additionalparam>${javadoc.opts}</additionalparam>
-                            <excludePackageNames>net.sf.jsqlparser.parser</excludePackageNames> 
-                        </configuration>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.7.1</version>
-                <executions>
-                    <execution>
-                        <id>attach-descriptor</id>
-                        <goals>
-                            <goal>attach-descriptor</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <locales>en</locales>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>3.1.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <format>xml</format>
-                    <instrumentation>
-                        <excludes>
-                            <exclude>net/sf/jsqlparser/parser/*.class</exclude>
-                            <exclude>net/sf/jsqlparser/JSQLParserException.class</exclude>
-                        </excludes>
-                    </instrumentation>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>3.0.1</version>
-                <extensions>true</extensions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
+                <version>${surefire.version}</version>
                 <configuration>
-                    <trimStackTrace>false</trimStackTrace>
+                    <argLine>${surefireArgLine}</argLine>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>analyze</id>
+                        <goals>
+                            <goal>analyze-only</goal>
+                        </goals>
+                        <configuration>
+                            <failOnWarning>true</failOnWarning>
+                            <outputXML>true</outputXML>
+                            <ignoredUsedUndeclaredDependencies>
+                                <ignoredUsedUndeclaredDependency>javax.inject:javax.inject</ignoredUsedUndeclaredDependency>
+                                <ignoredUsedUndeclaredDependency>org.projectlombok:lombok</ignoredUsedUndeclaredDependency>
+                            </ignoredUsedUndeclaredDependencies>
+                            <ignoredUnusedDeclaredDependencies>
+                                <ignoredUnusedDeclaredDependency>org.junit.jupiter:junit-jupiter-engine</ignoredUnusedDeclaredDependency>
+                                <ignoredUnusedDeclaredDependency>org.slf4j:slf4j-simple</ignoredUnusedDeclaredDependency>
+                                <ignoredUnusedDeclaredDependency>org.mockito:mockito-core</ignoredUnusedDeclaredDependency>
+                                <ignoredUnusedDeclaredDependency>de.adorsys:datasafe-runtime-delegate</ignoredUnusedDeclaredDependency>
+                            </ignoredUnusedDeclaredDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.7</version>
+                <version>${jacoco.version}</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
+                        <phase>validate</phase>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>prepare-package</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>report-aggregate</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                    </execution>
                 </executions>
+                <configuration>
+                    <append>true</append>
+                    <excludes>
+                        <!-- Exclude Dagger2 generated code -->
+                        <exclude>**/*_Provide*/**</exclude>
+                        <exclude>**/*_Factory*/**</exclude>
+                        <exclude>**/*_MembersInjector.class</exclude>
+                        <exclude>**/*Dagger*</exclude>
+                        <exclude>**/Default*Module.class</exclude>
+                        <!-- Exclude RuntimeDelegate -->
+                        <exclude>**/*RuntimeDelegatable*</exclude>
+                    </excludes>
+                    <propertyName>surefireArgLine</propertyName>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-    
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.22.2</version>
-                <configuration>
-                    <outputDirectory>${project.reporting.outputDirectory}/testresults</outputDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
-                <configuration>
-                    <useStandardDocletOptions>true</useStandardDocletOptions>
-                    <maxmemory>800m</maxmemory>
-                    <doclint>none</doclint>
-                    
-                    <!-- Doclint does not work on the Test Sources
-                    <doclint>all,-missing</doclint>
-                    <excludePackageNames>net.sf.jsqlparser.parser</excludePackageNames>
-                    <sourceFileExcludes>
-                        <sourceFileExclude>src/test/**</sourceFileExclude>
-                    </sourceFileExcludes>
-                    -->
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>3.0.0</version>
-            </plugin>
-            
-            <!-- Cobertura is broken with Java 1.8 and there is not fix
-            please refer to https://github.com/cobertura/cobertura/issues/248
-            
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <aggregate>true</aggregate>
-                    <outputDirectory>${project.reporting.outputDirectory}/cobertura</outputDirectory>
-                </configuration>
-            </plugin>
-            -->
-            
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.5</version>
-            </plugin>
-            
-            <!-- Obsolete or Unused
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <configuration>
-                    <configLocation>config/sun_checks.xml</configLocation>
-                </configuration>
-            </plugin>
-            -->
-            
-            <!-- JJDoc report generating the BNF documentation -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>javacc-maven-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <!-- 
-                    /**
-                    * A flag to specify the output format for the generated documentation. If set to <code>true</code>, JJDoc will
-                    * generate a plain text description of the BNF. Some formatting is done via tab characters, but the intention is to
-                    * leave it as plain as possible. Specifying <code>false</code> causes JJDoc to generate a hyperlinked HTML document
-                    * unless the parameter {@link #bnf} has been set to <code>true</code>. Default value is <code>false</code>.
-                    * 
-                    * @parameter expression="${text}"
-                    */
-                    -->
-                    <text>false</text>
-                    
-                    <!--
-                    /**
-                    * A flag whether to generate a plain text document with the unformatted BNF. Note that setting this option to
-                    * <code>true</code> is only effective if the parameter {@link #text} is <code>false</code>. Default value is
-                    * <code>false</code>.
-                    * 
-                    * @parameter expression="${bnf}"
-                    * @since 2.6
-                    */
-                    -->
-                    <bnf>false</bnf>
-                    
-                    <!--
-                    /**
-                    * This option controls the structure of the generated HTML output. If set to <code>true</code>, a single HTML
-                    * table for the entire BNF is generated. Setting it to <code>false</code> will produce one table for every
-                    * production in the grammar.
-                    * 
-                    * @parameter expression="${oneTable}" default-value=true
-                    */
-                    -->
-                    <oneTable>false</oneTable>
-                    
-                    <!--
-                    /**
-                    * The hypertext reference to an optional CSS file for the generated HTML documents. If specified, this CSS file
-                    * will be included via a <code>&lt;link&gt;</code> element in the HTML documents. Otherwise, the default style will
-                    * be used.
-                    * 
-                    * @parameter expression="${cssHref}"
-                    * @since 2.5
-                    */            
-                    -->
-                    <!-- <cssHref></cssHref> -->
-                    
-                    <outputDirectory>${project.reporting.outputDirectory}</outputDirectory>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
 
     <profiles>
         <profile>
-            <id>sign-release-artifacts</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
+            <id>defaultTests</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${surefire.version}</version>
+                        <configuration>
+                            <systemProperties>
+                                <property>
+                                    <name>DISABLE_RANDOM_ACTIONS_TEST</name>
+                                    <value>true</value>
+                                </property>
+                                <property>
+                                    <name>SKIP_CEPH</name>
+                                    <value>true</value>
+                                </property>
+
+                            </systemProperties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!--
+        This profile exist to show Lombok-generated code in javadoc without touching dev and release classes.
+        You can generate JavaDoc with comments from lombok using:
+        mvn clean javadoc:aggregate -P javadoc
+        -->
+        <profile>
+            <id>javadoc</id>
+            <properties>
+                <src.dir>target/generated-sources/delombok</src.dir>
+                <test.srt.dir>target/generated-test-sources/delombok</test.srt.dir>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>com.google.dagger</groupId>
+                                    <artifactId>dagger-compiler</artifactId>
+                                    <version>${dagger.version}</version>
+                                </path>
+                                <path>
+                                    <groupId>de.adorsys</groupId>
+                                    <artifactId>datasafe-runtime-delegate</artifactId>
+                                    <version>${project.version}</version>
+                                </path>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok-maven-plugin</artifactId>
+                        <version>${lombok-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <goals>
+                                    <goal>delombok</goal>
+                                </goals>
+                                <configuration>
+                                    <addOutputDirectory>false</addOutputDirectory>
+                                    <sourceDirectory>src/main/java</sourceDirectory>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <!-- Exclude Dagger2 generated code -->
+                            <sourceFileExcludes>**/*Dagger*</sourceFileExcludes>
+                            <sourceFileExcludes>**/*Factory*</sourceFileExcludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>sonatype</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>1.6</version>
+                        <configuration>
+                        </configuration>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -500,118 +563,104 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-                                <configuration>
-                                    <keyname>f22e0543</keyname>
-                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
-            </build>
-        </profile>
-    
-        <!--
-        <profile>
-          <id>doclint-java8-disable</id>
-          <activation>
-            <jdk>[1.8,)</jdk>
-          </activation>
-          <properties>
-            <javadoc.opts>-Xdoclint:none</javadoc.opts>
-          </properties>
-        </profile>
-        -->
-        <profile>
-            <id>check.sources</id>
-            <activation>
-                <property>
-                    <name>!skipCheckSources</name>
-                </property>
-                <jdk>[1.8,)</jdk>
-            </activation>
-            <build>
-                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-checkstyle-plugin</artifactId>
-                        <version>3.1.0</version>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
                         <executions>
                             <execution>
-                                <id>verify-style</id>
-                                <phase>process-classes</phase>
+                                <id>attach-javadocs</id>
+                                <phase>package</phase>
                                 <goals>
-                                    <goal>check</goal>
+                                    <goal>jar</goal>
                                 </goals>
                             </execution>
                         </executions>
-                        <configuration>
-                            <logViolationsToConsole>true</logViolationsToConsole>
-                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                            <sourceDirectories>${project.build.sourceDirectory}</sourceDirectories>
-                            <checkstyleRules>
-                                <module name="Checker">
-                                    <module name="SuppressWarningsFilter" />
-                                    <module name="FileTabCharacter" />
-                                    <!-- git checkout may change linefeeds on the fly
-                                    <module name="RegexpMultiline">
-                                        <property name="format" value="(?s:(\r\n|\r).*)" />
-                                        <property name="message" value="CRLF and CR line endings are prohibited, but this file uses them." />
-                                    </module>
-                                    -->
-                                    <module name="TreeWalker">
-                                        <module name="AvoidNestedBlocks" />
-                                        <module name="ConstantName" />
-                                        <module name="EmptyCatchBlock" />
-                                        <module name="EmptyStatement" />
-                                        <module name="MissingOverride" />
-                                        <module name="MultipleVariableDeclarations" />
-                                        <module name="ParameterAssignment" />
-                                        <module name="StringLiteralEquality" />
-                                        <module name="RedundantImport" />
-                                        <module name="UnusedImports" />
-                                        
-                                        <module name="WhitespaceAfter" />
-										
-                                        <module name="NeedBraces" />
-                                        <module name="UnnecessaryParentheses" />
-                                        <module name="LeftCurly" />
-                                        <module name="RightCurly" />
-                                        
-                                        <module name="SuppressWarningsHolder" />
-                                    </module>
-                                </module>
-                            </checkstyleRules>
-                        </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.puppycrawl.tools</groupId>
-                                <artifactId>checkstyle</artifactId>
-                                <version>8.29</version>
-                            </dependency>
-                        </dependencies>
                     </plugin>
                 </plugins>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>2.7</version>
+                        </plugin>
+                        <plugin>
+                            <artifactId>maven-release-plugin</artifactId>
+                            <version>2.5.2</version>
+                            <configuration>
+                                <releaseProfiles>release</releaseProfiles>
+                                <autoVersionSubmodules>true</autoVersionSubmodules>
+                            </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-jar-plugin</artifactId>
+                            <version>2.6</version>
+                            <configuration>
+                                <archive>
+                                    <manifest>
+                                        <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                        <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                    </manifest>
+                                    <manifestEntries>
+                                        <Implementation-Version>${project.version}_${maven.build.timestamp}
+                                        </Implementation-Version>
+                                        <Project-buildArtifact>${project.artifactId}</Project-buildArtifact>
+                                        <Project-buildVersion>${project.version}</Project-buildVersion>
+                                        <Project-buildTimestamp>${maven.build.timestamp}</Project-buildTimestamp>
+                                        <Project-buildNumber>${buildNumber}</Project-buildNumber>
+                                        <Project-buildScmBranch>${scmBranch}</Project-buildScmBranch>
+                                    </manifestEntries>
+                                </archive>
+                            </configuration>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>buildnumber-maven-plugin</artifactId>
+                            <version>1.3</version>
+                            <executions>
+                                <execution>
+                                    <phase>validate</phase>
+                                    <goals>
+                                        <goal>create</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <!-- Die commit id bei "git log -abbrev-commit" ist ebenfalls 7 Zeichen. -->
+                                <shortRevisionLength>7</shortRevisionLength>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-deploy-plugin</artifactId>
+                            <version>2.8.1</version>
+                            <configuration>
+                                <skip>${deploy.disabled}</skip>
+                            </configuration>
+                        </plugin>
+                </plugins>
+                </pluginManagement>
             </build>
-        </profile>
-        <profile>
-            <!-- for building the parser with debug flags -->
-            <id>skip.all</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <properties>
-                <maven.test.skip>true</maven.test.skip>
-                <checkstyle.skip>true</checkstyle.skip>
-                <maven.javadoc.skip>true</maven.javadoc.skip>
-                <license.skipUpdateLicense>true</license.skipUpdateLicense>
-            </properties>
         </profile>
     </profiles>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <description>JSqlParser parses an SQL statement and translate it into a hierarchy of Java classes.
-        The generated hierarchy can be navigated using the Visitor Pattern.</description>
+    <distributionManagement>
+        <repository>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
