@@ -1,0 +1,16 @@
+{@import https://raw.githubusercontent.com/central7/pom/main/pom.jim}
+{@import ../version.jim}
+{project javageci testengine}
+    {packaging jar}
+    {GAV ::javageci-testengine:{VERSION}}
+    {parent :{GROUPID}:javageci-parent}
+    {description|Javageci Junit 5 Test Engine}
+
+    {@include ../plugins.jim}
+
+    {dependencies#
+        {dependency :{GROUPID}:javageci-jamal::compile}
+        {@for MODULE in (api,engine)=
+            {dependency :org.junit.jupiter:junit-jupiter-MODULE::compile}}
+    }
+{end project}

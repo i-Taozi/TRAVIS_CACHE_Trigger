@@ -1,0 +1,9 @@
+{@import https://raw.githubusercontent.com/central7/pom/main/pom.jim}
+{@import ../version.jim}
+{project javageci annotation}
+    {packaging jar}
+    {GAV ::javageci-annotation:{VERSION}}
+    {parent :{GROUPID}:javageci-parent}
+    {description|Javageci annotations}
+    {@include ../plugins.jim}
+{end project}

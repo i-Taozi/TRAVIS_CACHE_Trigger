@@ -1,313 +1,142 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.blackdread</groupId>
-    <artifactId>canon-sdk-java</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <name>javageci-parent</name>
     <packaging>pom</packaging>
-
-    <name>Canon sdk java parent POM</name>
-    <description>Canon EDSDK parent pom for modules</description>
-    <url>https://github.com/Blackdread/canon-sdk-java</url>
-
-    <scm>
-        <connection>scm:git:https://github.com/blackdread/canon-sdk-java.git</connection>
-        <developerConnection>scm:git:https://github.com/blackdread/canon-sdk-java.git</developerConnection>
-        <url>https://github.com/blackdread/canon-sdk-java</url>
-        <tag>HEAD</tag>
-    </scm>
-
+    <groupId>com.javax0.geci</groupId>
+    <artifactId>javageci-parent</artifactId>
+    <version>1.6.4-SNAPSHOT</version>
+    <description>Java GEnerate Code Inline source code generation framework</description>
+    <modules>
+        <module>javageci-engine</module>
+        <module>javageci-api</module>
+        <module>javageci-tools</module>
+        <module>javageci-core</module>
+        <module>javageci-annotation</module>
+        <module>javageci-examples</module>
+        <module>javageci-jamal</module>
+        <module>javageci-jamal-test</module>
+        <module>javageci-core-annotations</module>
+        <module>javageci-testengine</module>
+    </modules>
     <licenses>
         <license>
-            <name>MIT</name>
-            <url>https://github.com/Blackdread/canon-sdk-java/blob/master/LICENSE</url>
-            <distribution>repo</distribution>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
     <developers>
         <developer>
-            <id>blackdread</id>
-            <name>Yoann CAPLAIN</name>
-            <url>http://www.blackdread.org/</url>
+            <name>Peter Verhas</name>
+            <email>peter@verhas.com</email>
         </developer>
     </developers>
-
-    <issueManagement>
-        <system>Github</system>
-        <url>https://github.com/Blackdread/canon-sdk-java/issues</url>
-    </issueManagement>
-
-    <inceptionYear>2018</inceptionYear>
-
-    <modules>
-        <module>camera-binding</module>
-        <module>camera-framework</module>
-        <!-- Removed for now as not used -->
-        <!--<module>camera-sdk</module>-->
-    </modules>
-
+    <scm>
+        <connection>scm:git:git://github.com/verhas/javageci.git</connection>
+        <developerConnection>scm:git:ssh://github.com/verhas/javageci.git</developerConnection>
+        <url>https:/github.com/verhas/javageci/tree/master</url>
+    </scm>
+    <url>https:/github.com/verhas/javageci/tree/master</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
-        <maven.version>3.0.0</maven.version>
-
-        <!-- Version of bindings to use -->
-        <!-- Cannot use separate version so instead ${project.version} and binding module is deployed every time with new version even if no changes -->
-        <!--<camera-binding.version>0.0.1</camera-binding.version>-->
-
-        <jna.version>5.8.0</jna.version>
-        <jnaerator.version>0.12</jnaerator.version>
-
-        <guava.version>30.1.1-jre</guava.version>
-
-        <commons-lang3.version>3.12.0</commons-lang3.version>
-
-        <!-- Logging versions -->
-        <slf4j.version>1.7.32</slf4j.version>
-        <logback-classic.version>1.2.4</logback-classic.version>
-        <log4j.version>2.11.1</log4j.version>
-
-        <!-- Test versions -->
-        <junit.jupiter.version>5.7.2</junit.jupiter.version>
-        <mockito.version>3.11.2</mockito.version>
-
-        <!-- Test System Properties -->
-        <!-- Value are changed by profiles -->
-        <canonLibIsOnPath.boolean>false</canonLibIsOnPath.boolean>
-        <canonCameraConnected.boolean>false</canonCameraConnected.boolean>
-        <mockLibrary.boolean>false</mockLibrary.boolean>
-
-
-        <!-- Plugin versions -->
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
-        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
-        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
-        <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
-        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-
-
-        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-        <coveralls-plugin.version>4.3.0</coveralls-plugin.version>
-
-        <!-- Deploy versions -->
-        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+        <profile>default</profile>
     </properties>
-
-    <profiles>
-        <profile>
-            <id>dllOnPath</id>
-            <properties>
-                <canonLibIsOnPath.boolean>true</canonLibIsOnPath.boolean>
-            </properties>
-        </profile>
-        <profile>
-            <id>canonCameraConnected</id>
-            <properties>
-                <canonCameraConnected.boolean>true</canonCameraConnected.boolean>
-            </properties>
-        </profile>
-        <profile>
-            <id>mockLibrary</id>
-            <properties>
-                <mockLibrary.boolean>true</mockLibrary.boolean>
-                <canonLibIsOnPath.boolean>false</canonLibIsOnPath.boolean>
-                <canonCameraConnected.boolean>false</canonCameraConnected.boolean>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>release</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
-
-    <dependencyManagement>
-        <dependencies>
-            <!-- Not used (a lot) for now but might be to not force dependencies to all modules -->
-            <dependency>
-                <groupId>net.java.dev.jna</groupId>
-                <artifactId>jna</artifactId>
-                <version>${jna.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>net.java.dev.jna</groupId>
-                <artifactId>jna-platform</artifactId>
-                <version>${jna.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.blackdread</groupId>
-                <artifactId>camera-binding</artifactId>
-                <!--<version>${camera-binding.version}</version>-->
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.blackdread</groupId>
-                <artifactId>camera-framework</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-junit-jupiter</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!-- Check log4j -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-classic.version}</version>
-            <optional>true</optional>
-        </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.apache.logging.log4j</groupId>-->
-        <!--<artifactId>log4j-api</artifactId>-->
-        <!--<version>${log4j.version}</version>-->
-        <!--<optional>true</optional>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.apache.logging.log4j</groupId>-->
-        <!--<artifactId>log4j-core</artifactId>-->
-        <!--<version>${log4j.version}</version>-->
-        <!--<optional>true</optional>-->
-        <!--</dependency>-->
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
-        <!--Only if not using sonatype staging plugin-->
-        <!--http://central.sonatype.org/pages/apache-maven.html-->
         <repository>
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-
     <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>com.nativelibs4java</groupId>
-                    <artifactId>maven-jnaerator-plugin</artifactId>
-                    <version>${jnaerator.version}</version>
-                </plugin>
-
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven-compiler-plugin.version}</version>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M4</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
-                        <release>8</release>
+                        <argLine>
+                            --add-opens geci.api/javax0.geci.api=ALL-UNNAMED
+                            --add-opens geci.tools/javax0.geci.tools=ALL-UNNAMED
+                            --add-opens geci.tools/javax0.geci.tools.syntax=ALL-UNNAMED
+                            --add-opens geci.tools/javax0.geci.tools.reflection=ALL-UNNAMED
+                            --add-opens geci.tools/javax0.geci.javacomparator=ALL-UNNAMED
+                            --add-opens geci.tools/javax0.geci.lexeger=ALL-UNNAMED
+                            --add-opens geci.tools/javax0.geci.javacomparator.lex=ALL-UNNAMED
+                            --add-opens geci.engine/javax0.geci.util=ALL-UNNAMED
+                            --add-opens geci.engine/javax0.geci.toolsgen=ALL-UNNAMED
+                            --add-opens geci.engine/javax0.geci.engine=ALL-UNNAMED
+                            --add-opens geci.core/javax0.geci.fluent.syntax=ALL-UNNAMED
+                            --add-opens geci.core/javax0.geci.record=ALL-UNNAMED
+                            --add-opens geci.core/javax0.geci.repeated=ALL-UNNAMED
+                            --add-opens geci.core/javax0.geci.iterate=ALL-UNNAMED
+                            --add-opens geci.core/javax0.geci.jdocify=ALL-UNNAMED
+                            --add-opens geci.core/javax0.geci.mapper=ALL-UNNAMED
+                            --add-opens geci.core/javax0.geci=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tutorials.simple=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tutorials.hello=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tutorials.hello=geci.tools
+                            --add-opens geci.examples/javax0.geci.buildfluent=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.consistency=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.templated=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.repeated=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.mapper=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.builder=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.test.tools.lexeger=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.builder=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.cloner=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.configBuilder=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.record=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.accessor=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.tests.equals=ALL-UNNAMED
+                            --add-opens geci.examples/javax0.geci.jamal.test.tools.lexeger=ALL-UNNAMED
+                            --add-exports geci.examples/javax0.geci.tests.fluent=geci.tools
+                            --add-exports geci.examples/javax0.geci.tutorials.simple=geci.core
+                            --add-exports geci.examples/javax0.geci.tests.fluent=geci.core
+                            --add-exports geci.examples/javax0.geci.buildfluent=geci.core
+                            --add-exports geci.examples/javax0.geci.geci.jamal.reflection=ALL-UNNAMED
+                            --add-exports org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
+                            --add-exports org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
+                        </argLine>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.junit.jupiter</groupId>
+                            <artifactId>junit-jupiter-engine</artifactId>
+                            <version>5.7.0</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-eclipse-plugin</artifactId>
-                    <version>${maven-eclipse-plugin.version}</version>
-                    <configuration>
-                        <downloadSources>true</downloadSources>
-                        <downloadJavadocs>true</downloadJavadocs>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <version>${maven-site-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${maven-enforcer-plugin.version}</version>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.1</version>
                     <executions>
                         <execution>
-                            <id>enforce-versions</id>
+                            <id>attach-sources</id>
                             <goals>
-                                <goal>enforce</goal>
+                                <goal>jar</goal>
                             </goals>
                         </execution>
                     </executions>
-                    <configuration>
-                        <rules>
-                            <requireMavenVersion>
-                                <message>You are running an older version of Maven. Requires at least Maven ${maven.version}
-                                </message>
-                                <version>[${maven.version},)</version>
-                            </requireMavenVersion>
-                            <requireJavaVersion>
-                                <message>You are running an older version of Java. Requires at least JDK ${java.version}</message>
-                                <version>[${java.version}.0,)</version>
-                            </requireJavaVersion>
-                        </rules>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>${maven-javadoc-plugin.version}</version>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <detectOfflineLinks>false</detectOfflineLinks>
+                    </configuration>
                     <executions>
                         <execution>
                             <id>attach-javadocs</id>
@@ -319,35 +148,16 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>${maven-source-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <version>${maven-gpg-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>sign-artifacts</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>sign</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <release>11</release>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.sonatype.plugins</groupId>
                     <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>${nexus-staging-maven-plugin.version}</version>
+                    <version>1.6.8</version>
                     <extensions>true</extensions>
                     <configuration>
                         <serverId>ossrh</serverId>
@@ -355,70 +165,164 @@
                         <autoReleaseAfterClose>true</autoReleaseAfterClose>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${maven-release-plugin.version}</version>
-                    <configuration>
-                        <tagNameFormat>@{project.version}</tagNameFormat>
-                        <scmCommentPrefix />
-                        <username>blackdread</username>
-                        <autoVersionSubmodules>true</autoVersionSubmodules>
-                        <useReleaseProfile>false</useReleaseProfile>
-                        <releaseProfiles>release</releaseProfiles>
-                        <goals>deploy</goals>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>report</id>
-                            <phase>prepare-package</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.eluder.coveralls</groupId>
-                    <artifactId>coveralls-maven-plugin</artifactId>
-                    <version>${coveralls-plugin.version}</version>
-                    <!--<configuration>-->
-                    <!--<repoToken>token given by environment variables</repoToken>-->
-                    <!--</configuration>-->
-                </plugin>
             </plugins>
         </pluginManagement>
-
-        <plugins>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <systemPropertyVariables>
-                        <canonLibIsOnPath>${canonLibIsOnPath.boolean}</canonLibIsOnPath>
-                        <canonCameraConnected>${canonCameraConnected.boolean}</canonCameraConnected>
-                        <mockLibrary>${mockLibrary.boolean}</mockLibrary>
-                    </systemPropertyVariables>
-                </configuration>
-            </plugin>
-        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
-
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.javax0.geci</groupId>
+                <artifactId>javageci-api</artifactId>
+                <version>1.6.4-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.geci</groupId>
+                <artifactId>javageci-core</artifactId>
+                <version>1.6.4-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.geci</groupId>
+                <artifactId>javageci-tools</artifactId>
+                <version>1.6.4-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.geci</groupId>
+                <artifactId>javageci-engine</artifactId>
+                <version>1.6.4-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.geci</groupId>
+                <artifactId>javageci-annotation</artifactId>
+                <version>1.6.4-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.geci</groupId>
+                <artifactId>javageci-core-annotations</artifactId>
+                <version>1.6.4-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.geci</groupId>
+                <artifactId>javageci-jamal</artifactId>
+                <version>1.6.4-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.geci</groupId>
+                <artifactId>javageci-testengine</artifactId>
+                <version>1.6.4-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>5.7.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.7.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-engine</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-testsupport</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-snippet</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-io</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-plantuml</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-ruby</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-groovy</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-scriptbasic</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-yaml</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-tools</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.javax0.jamal</groupId>
+                <artifactId>jamal-api</artifactId>
+                <version>1.7.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.9.1</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
