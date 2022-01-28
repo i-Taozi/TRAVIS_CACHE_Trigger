@@ -1,8 +1,0 @@
-spring:
-  cloud:
-    config:
-      server:
-        native:
-          search-locations: classpath:/config #配置文件所在位置
-server:
-  port: 8084  #服务端口号

@@ -1,3 +1,0 @@
-spring:
-  resources:
-    static-locations: classpath:/out/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
