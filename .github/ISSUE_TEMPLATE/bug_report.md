@@ -1,38 +1,41 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
-
+name: 报告缺陷 Bug Report
+about: 报告缺陷以帮助我们改进 Report defects to help us improve
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+### 描述问题 Describe the problem
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+<!--
+请尽量清晰精准地描述你碰到的问题。
+Please describe your problem as clearly and accurately as possible.
+-->
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+### 期待的结果 Expected result
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+<!--
+请尽量清晰精准地描述你所期待的结果。
+Please be as clear and accurate as possible to describe the results you are looking for.
+-->
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+### 截屏或录像 Screenshot or video
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+<!--
+如果可能，请尽量附加截图或录像来描述你遇到的问题。
+If possible, please try to attach screenshots or videos to describe the problem you are experiencing.
 
-**Additional context**
-Add any other context about the problem here.
+（Windows 下推荐使用 [Screen2Gif](https://www.screentogif.com/) 进行录屏。如果是编辑器输入相关问题，使用 Screen2Gif 录制结束后请打开`图像 - 按键`）
+(It is recommended to use [Screen2Gif](https://www.screentogif.com/) to record the screen under Windows. If it is related to the editor input, please open the `Image - Key Strokes` after recording with Screen2Gif)
+-->
+
+### 版本环境 Version environment
+
+* 版本 Version：
+* 操作系统 Operating system：
+* 浏览器 Browser：
+
+### 其他信息 Other information
+
+<!--
+请提供其他附加信息帮助我们诊断问题。
+Please provide other additional information to help us diagnose the problem.
+-->
