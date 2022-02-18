@@ -1,21 +1,17 @@
 language: java
+
+git:
+  quiet: true
+  submodules: false
+
+# 08-Jul-2020, tatu: can not yet enable JDK14 due to new Record tests failing
 jdk:
-  - oraclejdk7
-  - openjdk7
-  - openjdk6
-script: mvn compile test
-install: true
-notifications:
-  irc: 
-    channels: 
-      - "irc.esper.net#lain"
-    on_success: change
-    on_failure: always
-  email:
-    recipients:
-      - "khobbits@ess3.net"
-    on_success: change
-    on_failure: always
-cache:
-  directories:
-  - $HOME/.m2
+  - openjdk8
+  - openjdk11
+
+branches:
+  only:
+    - master
+    - "2.13"
+
+script: mvn -B clean verify
