@@ -90,3 +90,7 @@ after_failure:
 notifications:
     email:
       - dev@tomcat.apache.org
+
+cache:
+  directories:
+  - $HOME/.m2
