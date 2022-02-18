@@ -1,29 +1,26 @@
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 language: java
 
-install:
-- mvn clean install -DskipTests -DskipITs
+os: linux
+
+# Need to select an older Ubuntu distribution that supports JDK7
+dist: trusty
+
+jdk:
+  - openjdk7
+  - oraclejdk8
+  - openjdk8
+  - oraclejdk9
+  - openjdk11
+  - openjdk14
+
+# Workaround to using openjdk7 with Gradle due to security issue:
+# https://github.com/gradle/gradle/issues/2421
+before_install:
+- BCPROV_FILENAME=bcprov-ext-jdk15on-158.jar
+- wget "https://bouncycastle.org/download/${BCPROV_FILENAME}"
+- sudo mv $BCPROV_FILENAME /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext
+- sudo perl -pi.bak -e 's/^(security\.provider\.)([0-9]+)/$1.($2+1)/ge' /etc/java-7-openjdk/security/java.security
+- echo "security.provider.1=org.bouncycastle.jce.provider.BouncyCastleProvider" | sudo tee -a /etc/java-7-openjdk/security/java.security
 
 script:
-- mvn test -B
-
-arch:
-  - ppc64le
-
-cache:
-  directories:
-  - $HOME/.m2
+  - ./gradlew clean build javadoc
