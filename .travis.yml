@@ -1,12 +1,21 @@
-language: java
-jdk:
-  - openjdk11
+dist: trusty
 
-install:
-  - mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V -Pci
-after_success:
-  - mvn clean test jacoco:report coveralls:report -Pci
+language: java
+
+jdk:
+  - oraclejdk11
+
+notifications:
+  email:
+      - notification@qos.ch
+
+install: /bin/true
+
+script:
+  - mvn clean
+  - mvn install
 
 cache:
   directories:
   - $HOME/.m2
+  

@@ -1,394 +1,523 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    Description: Solo POM.
-    Version: 3.18.3.111, Jan 14, 2022
-    Author: <a href="http://88250.b3log.org">Liang Ding</a>
-    Author: <a href="http://www.annpeter.cn">Ann Peter</a>
-    Author: <a href="http://vanessa.b3log.org">Vanessa</a>
-    Author: <a href="https://ld246.com/member/nanolikeyou">nanolikeyou</a>
-    Author: <a href="https://ld246.com/member/hzchendou">hzchendou</a>
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.b3log</groupId>
-    <artifactId>solo</artifactId>
-    <packaging>jar</packaging>
-    <name>Solo</name>
-    <version>4.3.1</version>
-    <description>
-        一款小而美的博客系统，专为程序员设计。
-    </description>
-    <inceptionYear>2010</inceptionYear>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <organization>
-        <name>B3log</name>
-        <url>https://b3log.org</url>
-    </organization>
+  <modelVersion>4.0.0</modelVersion>
 
-    <licenses>
-        <license>
-            <name>木兰宽松许可证, 第2版</name>
-            <url>http://license.coscl.org.cn/MulanPSL2</url>
-        </license>
-    </licenses>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-parent</artifactId>
+  <version>2.0.0-alpha7-SNAPSHOT</version>
 
-    <developers>
-        <developer>
-            <id>845765@qq.com</id>
-            <name>Liang Ding</name>
-            <email>845765@qq.com</email>
-            <url>http://88250.b3log.org</url>
-            <roles>
-                <role>Lead</role>
-                <role>Initial Committer</role>
-            </roles>
-            <organization>B3log</organization>
-            <organizationUrl>https://b3log.org</organizationUrl>
-            <timezone>+8</timezone>
-        </developer>
+  <packaging>pom</packaging>
+  <name>SLF4J</name>
+  <description>Top SLF4J project pom.xml file</description>
+  <url>http://www.slf4j.org</url>
 
-        <developer>
-            <id>84588990@qq.com</id>
-            <name>Liyuan Li</name>
-            <email>84588990@qq.com</email>
-            <url>http://vanessa.b3log.org</url>
-            <roles>
-                <role>Committer</role>
-            </roles>
-            <organization>B3log</organization>
-            <organizationUrl>https://b3log.org</organizationUrl>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
+  <organization>
+    <name>QOS.ch</name>
+    <url>http://www.qos.ch</url>
+  </organization>
+  <inceptionYear>2005</inceptionYear>
 
-    <issueManagement>
-        <system>GitHub Issues</system>
-        <url>https://github.com/88250/solo/issues</url>
-    </issueManagement>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-    <scm>
-        <url>https://github.com/88250/solo</url>
-    </scm>
+  <scm>
+    <url>https://github.com/qos-ch/slf4j</url>
+    <connection>scm:git:https://github.com/qos-ch/slf4j.git</connection>
+  </scm>  
 
-    <properties>
-        <org.b3log.latke.version>3.4.22</org.b3log.latke.version>
+  <properties>
+    <latest.stable.version>1.7.33</latest.stable.version>
+    <!-- java.util.ServiceLoader requires Java 6 -->
+    <jdk.version>8</jdk.version>
+    <maven.compiler.source>${jdk.version}</maven.compiler.source>
+    <maven.compiler.target>${jdk.version}</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <!-- used in integration testing -->
+    <slf4j.api.minimum.compatible.version>1.6.0</slf4j.api.minimum.compatible.version>
+    <cal10n.version>0.8.1</cal10n.version>
+    <reload4j.version>1.2.18.0</reload4j.version>    
+    <log4j.version>1.2.17</log4j.version>
+    <logback.version>1.2.10</logback.version>
+    <junit.version>4.13.1</junit.version>
+    <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
+    <maven-source-plugin.version>3.2.0</maven-source-plugin.version>
+    <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+    <maven-jxr-plugin.version>3.1.1</maven-jxr-plugin.version>
+    <build-helper-maven-plugin.version>3.2.0</build-helper-maven-plugin.version>
+            
+  </properties>
 
-        <jsoup.version>1.14.2</jsoup.version>
-        <flexmark.version>0.50.40</flexmark.version>
-        <commons-cli.version>1.3.1</commons-cli.version>
-        <emoji-java.version>5.1.0</emoji-java.version>
-        <jodd.version>6.0.7</jodd.version>
-        <owasp.version>1.2.2</owasp.version>
-        <snakeyaml.version>1.26</snakeyaml.version>
-        <user-agent-utils.version>1.21</user-agent-utils.version>
+  <developers>
+    <developer>
+      <id>ceki</id>
+      <name>Ceki Gulcu</name>
+      <email>ceki@qos.ch</email>
+    </developer>
+  </developers>
 
-        <license-maven-plugin.version>3.0</license-maven-plugin.version>
-        <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
-        <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
-        <testng.version>7.1.0</testng.version>
+  <modules>
+    <module>slf4j-api</module>
+    <module>slf4j-simple</module>
+    <module>slf4j-nop</module>
+    <module>slf4j-jdk14</module>
+    <module>slf4j-jdk-platform-logging</module>
+    <module>slf4j-log4j12</module>
+    <module>slf4j-reload4j</module>    
+    <module>slf4j-ext</module>
+    <module>jcl-over-slf4j</module>
+    <module>log4j-over-slf4j</module>
+    <module>jul-to-slf4j</module>
+    <module>osgi-over-slf4j</module>
+    <module>integration</module>
+    <module>slf4j-site</module>
+    <module>slf4j-migrator</module>
 
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.source>11</maven.compiler.source>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+  </modules>
 
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
     <dependencies>
-        <dependency>
-            <groupId>org.b3log</groupId>
-            <artifactId>latke-core</artifactId>
-            <version>${org.b3log.latke.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>redis.clients</groupId>
-                    <artifactId>jedis</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
-        <dependency>
-            <groupId>org.b3log</groupId>
-            <artifactId>latke-repository-mysql</artifactId>
-            <version>${org.b3log.latke.version}</version>
-        </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
-        <dependency>
-            <groupId>org.b3log</groupId>
-            <artifactId>latke-repository-h2</artifactId>
-            <version>${org.b3log.latke.version}</version>
-        </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-jdk14</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
-            <scope>test</scope>
-        </dependency>
+      
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>${jsoup.version}</version>
-        </dependency>
+ 
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
 
-        <dependency>
-            <groupId>com.vladsch.flexmark</groupId>
-            <artifactId>flexmark-all</artifactId>
-            <version>${flexmark.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.vladsch.flexmark</groupId>
-                    <artifactId>flexmark-pdf-converter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.vladsch.flexmark</groupId>
-                    <artifactId>flexmark-youtrack-converter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.vladsch.flexmark</groupId>
-                    <artifactId>flexmark-jira-converter</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.vdurmont</groupId>
-            <artifactId>emoji-java</artifactId>
-            <version>${emoji-java.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.json</groupId>
-                    <artifactId>json</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-cli</groupId>
-            <artifactId>commons-cli</artifactId>
-            <version>${commons-cli.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jodd</groupId>
-            <artifactId>jodd-http</artifactId>
-            <version>${jodd.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.owasp.encoder</groupId>
-            <artifactId>encoder</artifactId>
-            <version>${owasp.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>${snakeyaml.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>eu.bitwalker</groupId>
-            <artifactId>UserAgentUtils</artifactId>
-            <version>${user-agent-utils.version}</version>
-        </dependency>
+      <dependency>
+        <groupId>ch.qos.reload4j</groupId>
+        <artifactId>reload4j</artifactId>
+        <version>${reload4j.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>ch.qos.cal10n</groupId>
+        <artifactId>cal10n-api</artifactId>
+        <version>${cal10n.version}</version>
+      </dependency>
 
     </dependencies>
+  </dependencyManagement>
 
-    <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>etc/</exclude>
-                    <exclude>lib/</exclude>
-                    <exclude>docker/</exclude>
-                </excludes>
-            </resource>
-        </resources>
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>2.10</version>
+      </extension>
+    </extensions>
 
+    <resources>
+      <resource>
+        <directory>${project.basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>animal-sniffer-maven-plugin</artifactId>
+          <version>1.14</version>
+          <configuration>
+            <signature>
+              <groupId>org.codehaus.mojo.signature</groupId>
+              <artifactId>java16</artifactId>
+              <version>1.0</version>
+            </signature>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${maven-deploy-plugin.version}</version>
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <executions>
+
+          <execution>
+            <id>default-compile</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+            <configuration>
+              <source>${jdk.version}</source>
+              <target>${jdk.version}</target>
+            </configuration>
+          </execution> 
+
+          <execution>                      
+            <id>module-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>          
+            <configuration>
+              <release>9</release>
+              <compileSourceRoots>
+                <compileSourceRoot>${project.basedir}/src/main/java9</compileSourceRoot>
+              </compileSourceRoots>
+              <multiReleaseOutput>true</multiReleaseOutput>
+            </configuration>
+          </execution>
+
+
+
+        </executions>
+
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven-jar-plugin.version}</version>
+        <executions>
+          <!--  Repeated in slf4j-api/pom.xml -->
+          <execution>
+            <id>default-jar</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <archive>
+                <manifestEntries>
+                  <Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
+                  <Bundle-Description>${project.description}</Bundle-Description>
+                  <X-Compile-Source-JDK>${maven.compiler.source}</X-Compile-Source-JDK>
+                  <X-Compile-Target-JDK>${maven.compiler.target}</X-Compile-Target-JDK>
+                  <Implementation-Version>${project.version}</Implementation-Version>
+                  <Multi-Release>true</Multi-Release>
+                </manifestEntries>
+                <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+              </archive>
+              <skipIfEmpty>true</skipIfEmpty>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+ 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <configuration>
+          <forkCount>1</forkCount>
+          <reuseForks>false</reuseForks>
+          <reportFormat>plain</reportFormat>
+          <trimStackTrace>false</trimStackTrace>
+          <excludes>
+            <exclude>**/AllTest.java</exclude>
+            <exclude>**/PackageTest.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>${maven-source-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- as suggested in http://jira.qos.ch/browse/SLF4J-143 -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>${build-helper-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>parse-version</id>
+            <goals>
+              <goal>parse-version</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>${maven-site-plugin.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.0.0</version>
+      </plugin>
+    </plugins>
+  
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>${maven-jxr-plugin.version}</version>
+        <configuration>
+          <aggregate>true</aggregate>
+          <javadocDir>target/site/apidocs/</javadocDir>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven-javadoc-plugin.version}</version>
+        <configuration>
+          <linkJavadoc>true</linkJavadoc>
+          <linksource>true</linksource>
+          <aggregate>true</aggregate>
+          <additionalOptions>
+            <additionalOption>-Xdoclint:none</additionalOption>
+          </additionalOptions>
+          <excludePackageNames>org.slf4j.migrator:org.slf4j.migrator.*</excludePackageNames>
+          <sourceFileExcludes>
+            <sourceFileExclude>**/module-info.java</sourceFileExclude>
+          </sourceFileExcludes>
+          
+          <groups>
+            <group>
+              <title>SLF4J packages</title>
+              <packages>org.slf4j:org.slf4j.*</packages>
+            </group>
+            
+            <group>
+              <title>SLF4J extensions</title>
+              <packages>
+                org.slf4j.cal10n:org.slf4j.profiler:org.slf4j.ext:org.slf4j.instrumentation:org.slf4j.agent
+              </packages>
+            </group>
+            
+            <group>
+              <title>Jakarta Commons Logging packages</title>
+              <packages>org.apache.commons.*</packages>
+            </group>
+            
+            <group>
+              <title>java.util.logging (JUL) to SLF4J bridge</title>
+              <packages>org.slf4j.bridge</packages>
+            </group>
+            
+            <group>
+              <title>Apache log4j</title>
+              <packages>org.apache.log4j:org.apache.log4j.*</packages>
+            </group>
+          </groups>
+        </configuration>
+      </plugin>
+      
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <id>skipTests</id>
+      <properties>
+        <maven.test.skip>true</maven.test.skip>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>javadocjar</id>
+      <build>
         <plugins>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${coveralls-maven-plugin.version}</version>
-                <configuration>
-                    <repoToken>QZ1zzxOqOt1mtjyqmvzFJU5YW0kdIuExV</repoToken>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <useSystemClassLoader>false</useSystemClassLoader>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.mycila</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-                <version>${license-maven-plugin.version}</version>
-                <configuration>
-                    <header>src/main/resources/etc/header.txt</header>
-                    <quiet>false</quiet>
-                    <failIfMissing>true</failIfMissing>
-                    <aggregate>true</aggregate>
-                    <strictCheck>true</strictCheck>
-                    <includes>
-                        <include>**/src/*/java/**/*.java</include>
-                        <include>**/src/*/resources/js/*.js</include>
-                        <include>**/src/*/resources/scss/*.scss</include>
-                        <include>**/src/*/resources/**/*.ftl</include>
-                        <include>**/src/*/resources/skins/*/js/*.js</include>
-                        <include>**/src/*/resources/skins/**/*.scss</include>
-                        <include>**/src/*/resources/skins/**/*.properties</include>
-                        <include>**/src/*/resources/plugins/*/js/*.js</include>
-                        <include>**/src/*/resources/plugins/*/css/*.css</include>
-                        <include>**/src/*/resources/plugins/*/*.properties</include>
-                        <include>**/src/*/resources/js/admin/*.js</include>
-                        <include>**/src/*/resources/*.properties</include>
-                        <include>**/src/*/resources/*.xml</include>
-                        <include>**/src/test/resources/**/*</include>
-                        <include>**/src/*/resources/docker/*</include>
-                    </includes>
-                    <excludes>
-                        <exclude>**/src/main/java/**/package-info.java</exclude>
-                        <exclude>**/src/*/resources/js/lib/*.js</exclude>
-                        <include>**/src/*/resources/js/*.min.js</include>
-                        <include>**/src/*/resources/js/admin/*.min.js</include>
-                        <include>**/src/*/resources/skins/*/js/*.min.js</include>
-                        <include>**/src/*/resources/skins/*/css/*.css</include>
-                        <exclude>**/src/main/java/com/**/*.java</exclude>
-                    </excludes>
-
-                    <useDefaultExcludes>true</useDefaultExcludes>
-                    <mapping>
-                        <java>SLASHSTAR_STYLE</java>
-                        <scss>SLASHSTAR_STYLE</scss>
-                    </mapping>
-                    <useDefaultMapping>true</useDefaultMapping>
-                    <properties>
-                        <year>2010-present</year>
-                        <devTeam>b3log.org</devTeam>
-                    </properties>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>format</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>org.b3log.solo.Server</mainClass>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/assembly/bin.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- 需要打 jar 部署的话注释掉上面的配置，启用下面这段配置
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>org.b3log.solo.Server</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>assembly</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
-
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven-javadoc-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <additionalparam>-Xdoclint:none</additionalparam>
+              <failOnError>false</failOnError>
+              <sourceFileExcludes>
+                <sourceFileExclude>**/module-info.java</sourceFileExclude>
+              </sourceFileExcludes>
+            </configuration>
+          </plugin>
         </plugins>
+      </build>
+    </profile>
 
-        <finalName>solo</finalName>
-    </build>
+    <profile>
+      <id>license</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.google.code.maven-license-plugin</groupId>
+            <artifactId>maven-license-plugin</artifactId>
+            <configuration>
+              <header>src/main/licenseHeader.txt</header>
+              <quiet>false</quiet>
+              <failIfMissing>true</failIfMissing>
+              <aggregate>true</aggregate>
+              <includes>
+                <include>src/**/*.java</include>
+              </includes>
+              <useDefaultExcludes>true</useDefaultExcludes>
+              <useDefaultMapping>true</useDefaultMapping>
+              <properties>
+                <year>1999</year>
+              </properties>
+              <headerDefinitions>
+                <headerDefinition>src/main/javadocHeaders.xml</headerDefinition>
+              </headerDefinitions>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
 
-    <profiles>
-        <profile>
-            <id>ci</id>
-        </profile>
+      <pluginRepositories>
+      </pluginRepositories>
+    </profile>
 
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>aliyun</id>
-                    <url>https://maven.aliyun.com/nexus/content/groups/public</url>
-                </repository>
-            </repositories>
+    <profile>
+      <id>sign-artifacts</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>aliyun</id>
-                    <url>https://maven.aliyun.com/nexus/content/groups/public</url>
-                </pluginRepository>
-            </pluginRepositories>
-        </profile>
-    </profiles>
+    <!--
+    <profile>
+      <id>travis</id>
+      <activation>
+        <property>
+          <name>env.TRAVIS</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-toolchains-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>toolchain</id>
+                <phase>none</phase>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    -->
+  </profiles>
+
+  <pluginRepositories>
+    <pluginRepository>
+         <id>apache-snapshot-repo</id>
+         <name>apache-snapshot-repo</name>
+         <url>https://repository.apache.org/content/groups/snapshots/</url>
+         <releases>
+           <enabled>false</enabled>
+         </releases>
+         <snapshots>
+           <enabled>true</enabled>
+         </snapshots>
+
+    </pluginRepository>
+  </pluginRepositories>
+
+  <distributionManagement>
+    <site>
+      <id>qos_ch</id>
+      <url>scp://yvo.qos.ch/var/www/www.slf4j.org/htdocs/</url>
+    </site>
+
+    <repository>
+      <!--<id>pixie</id>-->
+      <!--<url>scp://pixie.qos.ch/var/mvnrepo/</url>-->
+      <id>sonatype-nexus-staging</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+
+  </distributionManagement>
 
 </project>
-
