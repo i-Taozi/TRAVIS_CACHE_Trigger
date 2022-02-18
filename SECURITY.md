@@ -1,22 +1,22 @@
 # Security Policy
 
-Last Updated: 2019-11-26
-
 ## Supported Versions
 
-Current status of open branches, with new releases, can be found from [Jackson Releases](https://github.com/FasterXML/jackson/wiki/Jackson-Releases)
-wiki page
+We actively support BigBlueButton through the community forums and through security updates.
+
+| Version | Supported          |
+| ------- | ------------------ |
+| 2.0.x (or earlier)  | :x:                |
+| 2.2.x   | :x:  |
+| 2.3.x   | :white_check_mark: |
+| 2.4.x   | :white_check_mark: |
+
+We have released 2.4 to the community and are going to support both 2.4 and 2.3 together for the coming months (while we're actively developing the next release).  Also, BigBlueButton 2.2 is running on Ubuntu 16.04 which is now end of life.
+
+As such, we recommend that all administrators deploy 2.4 going forward.  You'll find [many improvements](https://docs.bigbluebutton.org/2.4/new.html) in this newer version.
 
 ## Reporting a Vulnerability
 
-The recommended mechanism for reporting possible security vulnerabilities follows
-so-called "Coordinated Disclosure Plan" (see [definition of DCP](https://vuls.cert.org/confluence/display/Wiki/Coordinated+Vulnerability+Disclosure+Guidance)
-for general idea). The first step is to file a [Tidelift security contact](https://tidelift.com/security):
-Tidelift will route all reports via their system to maintainers of relevant package(s), and start the
-process that will evaluate concern and issue possible fixes, send update notices and so on.
-Note that you do not need to be a Tidelift subscriber to file a security contact.
+If you believe you have found a security vunerability in BigBlueButton please let us know directly by e-mailing security@bigbluebutton.org with as much detail as possible.
 
-Alternatively you may also report possible vulnerabilities to `info` at fasterxml dot com
-mailing address. Note that filing an issue to go with report is fine, but if you do that please
-DO NOT include details of security problem in the issue but only in email contact.
-This is important to give us time to provide a patch, if necessary, for the problem.
+Regards,... [BigBlueButton Team](https://docs.bigbluebutton.org/support/faq.html#bigbluebutton-committer)
