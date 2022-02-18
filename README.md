@@ -1,124 +1,141 @@
-<p align="center">
-  <img width="320" src="https://github.com/godcheese/nimrod/blob/master/nimrod_banner.png?raw=true">
-</p>
-<p align="center">
-  <a href="https://github.com/godcheese/nimrod">
-    <img src="https://img.shields.io/github/last-commit/godcheese/nimrod.svg" alt="GitHub Last Commit">
-  </a>
-  <a href="https://github.com/godcheese/nimrod/releases">
-    <img src="https://img.shields.io/github/release/godcheese/nimrod.svg" alt="GitHub release">
-  </a>
-  <a href="https://travis-ci.org/godcheese/nimrod" rel="nofollow">
-    <img src="https://travis-ci.org/godcheese/nimrod.svg?branch=master" alt="Build Status">
-  </a>
-   <a href="https://sonarcloud.io/dashboard?id=godcheese_nimrod" rel="nofollow">
-      <img src="https://sonarcloud.io/api/project_badges/measure?project=godcheese_nimrod&metric=alert_status" alt="Quality Gate Status">
-    </a>
-<a href="https://www.codacy.com/app/godcheese/nimrod?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=godcheese/nimrod&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/a8b58a98bd3541548e5705c65372734d" alt="Codacy Badge"/></a>
-  <a href="https://github.com/godcheese/nirmod/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
-  </a>
-<!--   <a href="https://gitter.im/repo-name/discuss">
-    <img src="https://badges.gitter.im/Join%20Chat.svg" alt="gitter">
-  </a> -->
-<!--   <a href="https://godcheese.github.io/nimrod/donate">
-    <img src="https://img.shields.io/badge/%24-donate-ff69b4.svg" alt="donate">
-  </a> -->
-</p>
+### Overview
 
-## 简介 Introduction
-> nimrod 英[ˈnimrɔd] 美[ˈnɪmˌrɑd] n.	好猎手，猎人;
+jOOR stands for jOOR Object Oriented Reflection. It is a simple wrapper for the java.lang.reflect package.
 
-Nimrod - 基于 Spring Boot 构建 的 Java Web 平台企业级单体应用快速开发框架，适合中小型项目的应用和开发。所采用的技术栈包括 Spring Boot、Spring、Spring Web MVC、MyBatis、Thymeleaf 等，遵守[阿里巴巴 Java 开发规约](https://github.com/alibaba/p3c)，帮助养成良好的编码习惯。整体采用 RBAC （ Role-Based Access Control ，基于角色的访问控制），具有严格的权限控制模块，支持系统与模块分离开发。最后希望这个项目能够对你有所帮助。
+jOOR's name is inspired by jOOQ, a fluent API for SQL building and execution.
 
-- Nimrod 开发交流群（微信群）：<img width="170" height="250" src="https://github.com/godcheese/nimrod/blob/master/WechatGroup.png?raw=true">
-- Nimrod 开发交流群（QQ 群）：[547252502](https://jq.qq.com/?_wv=1027&k=5yxyg73)
-- [码云 Gitee](https://gitee.com/godcheese/nimrod)
 
-| 环境 | 版本 |
-| :--- | :--- |
-| [Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) | 1.8 |
-| [MySQL](https://dev.mysql.com/downloads/mysql/5.7.html#downloads) | 5.7 |
-| [Maven](http://maven.apache.org/download.cgi) | 3.5 |
-| [Tomcat](https://tomcat.apache.org/download-90.cgi) | 9.0 |
+### Dependencies
 
-| 依赖 | 版本 |
-| :--- | :--- |
-| [Spring Boot](http://mvnrepository.com/artifact/org.springframework.boot/spring-boot) | 2.1.9.RELEASE |
-| [Spring Web MVC](http://mvnrepository.com/artifact/org.springframework/spring-webmvc) | 5.1.6.RELEASE |
-| [Spring Security Web](http://mvnrepository.com/artifact/org.springframework.security/spring-security-web) | 5.1.5.RELEASE |
-| [MyBatis](http://mvnrepository.com/artifact/org.mybatis/mybatis) | 3.5.1 |
-| [Thymeleaf](http://mvnrepository.com/artifact/org.thymeleaf/thymeleaf) | 3.0.11.RELEASE |
-| [Druid](http://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter) | 1.1.16 |
+None!
 
-| 测试账号 | 测试账号 |         |
-| :------ | :------ | :------ |
-| Username | Password | Role & Authority |
-| system_admin | 123456 | ROLE_USER,ROLE_ADMIN,ROLE_SYSTEM_ADMIN |
-| admin |123456 | ROLE_USER,ROLE_ADMIN,/API/SYSTEM/INDEX |
-| user |123456 | ROLE_USER |
+### Download
 
-## 特性 Features
+**For use with Java 9+**
 
-- 数据字典 ✓
-- 角色管理 ✓
-- 用户管理 ✓
-  - 在线用户 ✗
-- 权限管理 ✓
-  - 视图菜单 ✓
-  - 视图页面 ✓
-  - 视图页面组件 ✓
-  - API ✓
-- 消息中间件（ActiveMQ） ✓
-- 电子邮件管理 ✓
-- 操作日志 ✓
-- 附件管理 ✓
-- 定时任务 ✓
-- 部门管理 ✓
-- ~~工作流（Flowable）~~ ✓
-
-## 起步 Getting started
-
-```bash
-# clone the project
-git clone https://github.com/godcheese/nimrod.git && cd nimrod
-
-# package
-mvn clean package
-
-# develop
-mvn spring-boot:run
+```xml
+<dependency>
+  <groupId>org.jooq</groupId>
+  <artifactId>joor</artifactId>
+  <version>0.9.13</version>
+</dependency>
 ```
 
-## [开发文档 Documentation](https://github.com/godcheese/nimrod/blob/master/docs/getting_started.md)
+**For use with Java 8+**
 
-## [更新日志 Changelog](https://github.com/godcheese/nimrod/releases)
-> 参照 [Commit message 和 Change log 编写指南](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
-## [在线演示 Online Demo](http://demo.godcheese.com:8083/nimrod)
+```xml
+<dependency>
+  <groupId>org.jooq</groupId>
+  <artifactId>joor-java-8</artifactId>
+  <version>0.9.13</version>
+</dependency>
+```
 
-登录用户名密码加QQ群547252502获取。
+**For use with Java 6+**
 
-#### 截图 Screenshots
+```xml
+<dependency>
+  <groupId>org.jooq</groupId>
+  <artifactId>joor-java-6</artifactId>
+  <version>0.9.13</version>
+</dependency>
+```
 
-![1.png](https://github.com/godcheese/nimrod/blob/master/screenshots/1.png)
-![2.png](https://github.com/godcheese/nimrod/blob/master/screenshots/2.png)
-![3.png](https://github.com/godcheese/nimrod/blob/master/screenshots/3.png)
+### Simple example
 
-## 反馈 Feedback
+````java
+// All examples assume the following static import:
+import static org.joor.Reflect.*;
 
-[Issues](https://github.com/godcheese/nimrod/issues)
+String world = onClass("java.lang.String") // Like Class.forName()
+                .create("Hello World")     // Call most specific matching constructor
+                .call("substring", 6)      // Call most specific matching substring() method
+                .call("toString")          // Call toString()
+                .get();                    // Get the wrapped object, in this case a String
+````
 
-## 捐赠 Donation
 
-如果此项目对你有所帮助，不妨请我喝咖啡。
-If you find Nimrod useful, you can buy us a cup of coffee.
+### Proxy abstraction
 
-[Paypal Me](https://www.paypal.me/godcheese)
+jOOR also gives access to the java.lang.reflect.Proxy API in a simple way:
 
-## 浏览器支持 Browsers support
+````java
+public interface StringProxy {
+  String substring(int beginIndex);
+}
 
-Modern browsers and Internet Explorer 9+.
+String substring = onClass("java.lang.String")
+                    .create("Hello World")
+                    .as(StringProxy.class) // Create a proxy for the wrapped object
+                    .substring(6);         // Call a proxy method
+````
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-| IE9, IE10, IE11, Edge| last 15 versions| last 15 versions| last 10 versions
+### Runtime compilation of Java code
+
+jOOR has an optional dependency on the `java.compiler` module and simplifies access to `javax.tools.JavaCompiler` through the following API:
+
+```java
+Supplier<String> supplier = Reflect.compile(
+    "com.example.HelloWorld",
+    "package com.example;\n" +
+    "class HelloWorld implements java.util.function.Supplier<String> {\n" +
+    "    public String get() {\n" +
+    "        return \"Hello World!\";\n" +
+    "    }\n" +
+    "}\n").create().get();
+
+// Prints "Hello World!"
+System.out.println(supplier.get());
+```
+
+### Comparison with standard java.lang.reflect
+
+jOOR code:
+
+````java
+Employee[] employees = on(department).call("getEmployees").get();
+
+for (Employee employee : employees) {
+  Street street = on(employee).call("getAddress").call("getStreet").get();
+  System.out.println(street);
+}
+````
+
+The same example with normal reflection in Java:
+
+````java
+try {
+  Method m1 = department.getClass().getMethod("getEmployees");
+  Employee[] employees = (Employee[]) m1.invoke(department);
+
+  for (Employee employee : employees) {
+    Method m2 = employee.getClass().getMethod("getAddress");
+    Address address = (Address) m2.invoke(employee);
+
+    Method m3 = address.getClass().getMethod("getStreet");
+    Street street = (Street) m3.invoke(address);
+
+    System.out.println(street);
+  }
+}
+
+// There are many checked exceptions that you are likely to ignore anyway 
+catch (Exception ignore) {
+
+  // ... or maybe just wrap in your preferred runtime exception:
+  throw new RuntimeException(e);
+}
+````
+
+
+### Similar projects
+
+Everyday Java reflection with a fluent interface:
+
+ * http://docs.codehaus.org/display/FEST/Reflection+Module
+ * http://projetos.vidageek.net/mirror/mirror/
+
+Reflection modelled as XPath (quite interesting!)
+
+ * http://commons.apache.org/jxpath/users-guide.html
+
