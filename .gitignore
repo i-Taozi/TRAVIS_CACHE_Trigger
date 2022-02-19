@@ -1,12 +1,12 @@
-# JetBrains
-*.iml
-.idea/
-
-# Logs
-*.log
-
-# Others
 target/
-.settings/
-bin/
-/.attach_pid*
+delombok/
+.mvn/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+# dumps #
+dumps/*.ec*
