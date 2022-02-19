@@ -1,16 +1,15 @@
 language: java
+sudo: false
+dist: trusty
+
 jdk:
-  - openjdk-ea
-  - openjdk11
-  - openjdk8
+  - oraclejdk8
+  - oraclejdk9
+  - oraclejdk11
 
 matrix:
-  allow_failures:
-    - jdk: openjdk-ea
+   allow_failures:
+      - jdk: oraclejdk11
 
-after_success:
-  - mvn clean test jacoco:report-aggregate coveralls:report
-
-cache:
-  directories:
-  - $HOME/.m2
+script:
+  - mvn
