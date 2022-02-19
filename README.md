@@ -1,107 +1,61 @@
-# Aliyun LOG Java Producer
+# Metrics简介
 
-[![Build Status](https://travis-ci.org/aliyun/aliyun-log-producer-java.svg?branch=master)](https://travis-ci.org/aliyun/aliyun-log-producer-java)
-[![License](https://img.shields.io/badge/license-Apache2.0-blue.svg)](/LICENSE)
+[![Build Status](https://travis-ci.org/alibaba/metrics.svg?branch=master)](https://travis-ci.org/alibaba/metrics)
+[![codecov](https://codecov.io/gh/alibaba/metrics/branch/master/graph/badge.svg)](https://codecov.io/gh/alibaba/metrics)
+![license](https://img.shields.io/github/license/alibaba/metrics.svg)
 
-[README in English](/README_EN.md)
+随着微服务的兴起，如何对微服务进行监控，了解微服务当前的运行指标和健康状态，已经成为必备的能力。Metrics作为微服务中的重要的组件，为微服务的监控提供了数据基础。Metrics是一套标准度量库， 用于提供对从操作系统， 虚拟机， 容器，到应用的全方位, 多维度, 实时, 准确的度量服务。
 
-Aliyun LOG Java Producer 是一个易于使用且高度可配置的 Java 类库，专门为运行在大数据、高并发场景下的 Java 应用量身打造。
+Metrics（原Alibaba Metrics）是阿里巴巴集团内部广泛使用的度量埋点基础类库，内部有Java和Node.js两个版本，目前开源的是Java版本。内部版本诞生于2016年，经历过近三年的发展，经历三年双十一考验，已经成为阿里巴巴集团内部微服务监控度量的事实标准，覆盖了从系统，JVM，中间件，应用各层的度量指标，并且从命名规则，数据格式，埋点方式，计算规则等方便形成了一套统一的规范。
 
-## 功能特点
-1. 线程安全 - producer 接口暴露的所有方法都是线程安全的。
-2. 异步发送 - 调用 producer 的发送接口通常能够立即返回。Producer 内部会缓存并合并发送数据，然后批量发送以提高吞吐量。
-3. 自动重试 - 对可重试的异常，producer 会根据用户配置的最大重试次数和重试退避时间进行重试。
-4. 行为追溯 - 用户通过 callback 或 future 不仅能获取当前数据是否发送成功的信息，还可以获得该数据每次被尝试发送的信息，有利于问题追溯和行为决策。
-5. 上下文还原 - 同一个 producer 实例产生的日志在同一上下文中，在服务端可以查看某条日志前后相关的日志。
-6. 优雅关闭 - 保证 close 方法退时，producer 缓存的所有数据都能被处理，用户也能得到相应的通知。
+## 全面的指标统计
 
-## 功能优势
+metrics全面支持了从操作系统，JVM，中间件，再到应用层面的各级指标，并且对统一了各种命名指标，可以做到开箱即用，并支持通过配置随时开启和关闭某类指标的收集。
 
-使用 producer 相对于直接通过 API 或 SDK 向 LogHub 写数据会有如下优势。
+目前支持的指标主要包括  
 
-### 高性能
-在海量数据、资源有限的前提下，写入端要达到目标吞吐量需要实现复杂的控制逻辑，包括多线程、缓存策略、批量发送等，另外还要充分考虑失败重试的场景。Producer 实现了上述功能，在为您带来性能优势的同时简化了程序开发步骤。
+### 操作系统
 
-### 异步非阻塞
-在可用内存充足的前提下，producer 会对发往 LogHub 的数据进行缓存，因此用户调用 send 方法时能够立即返回，不会阻塞，达到计算与 I/O 逻辑分离的目的。稍后，用户可以通过返回的 future 对象或传入的 callback 获得数据发送的结果。
+支持Linux/Windows/Mac，包含cpu, load, disk, nettraffic, tcp。
 
-### 资源可控制
-可以通过参数控制 producer 用于缓存待发送数据的内存大小，同时还可以配置用于执行数据发送任务的线程数量。这样做一方面避免了 producer 无限制地消耗资源，另一方面可以让您根据实际情况平衡资源消耗和写入吞吐量。
+### JVM
 
-## 安装
+支持classload, gc次数和时间, 文件句柄，young/old区占用，线程状态, 堆外内存，编译时间，部分指标支持自动差值计算。
 
-### Maven 使用者
-将下列依赖加入到您项目的 pom.xml 中。
+### 中间件
+
+- Tomcat: 请求数，失败次数，处理时间，发送接收字节数，线程池活跃线程数等
+- Druid: sql执行次数，错误数，执行时间，影响行数等
+- Nginx: 接受，活跃连接数，读，写请求数，排队数，请求qps，平均rt等
+
+更详细的指标可以参考[这里](https://github.com/alibaba/metrics/wiki/supported-metrics-list),  后续会陆续添加对Dubbo, Nacos, Sentinel, Fescar等的支持。
+
+
+
+## REST支持
+
+metrics提供了基于JAX-RS的REST接口暴露，可以轻松查询内部的各种指标，既可以独立启动HTTP Server提供服务（默认提供了一个基于Jersey+ sun Http server的简单实现)，也可以嵌入已有的HTTP Server进行暴露指标。具体的接口可以参考[这里](https://github.com/alibaba/metrics/wiki/query-from-http)   
+
+### 如何使用
+
+使用方式很简单，和日志框架的Logger获取方式一致。
+
 ```
-<dependency>
-    <groupId>com.aliyun.openservices</groupId>
-    <artifactId>aliyun-log-producer</artifactId>
-    <version>0.3.10</version>
-</dependency>
-<dependency>
-    <groupId>com.aliyun.openservices</groupId>
-    <artifactId>aliyun-log</artifactId>
-    <version>0.6.33</version>
-</dependency>
-<dependency>
-    <groupId>com.google.protobuf</groupId>
-    <artifactId>protobuf-java</artifactId>
-    <version>2.5.0</version>
-</dependency>
+Counter hello = MetricManager.getCounter("test", MetricName.build("test.my.counter"));
+hello.inc();
 ```
 
-jar-with-dependency 版本，可以解决producer依赖的版本冲突
-```
-<dependency>
-    <groupId>com.aliyun.openservices</groupId>
-    <artifactId>aliyun-log</artifactId>
-    <version>0.6.35</version>
-  <classifier>jar-with-dependencies</classifier>
-</dependency>
-```
+支持的度量器包括：
 
-### Gradle 使用者
-```
-compile 'com.aliyun.openservices:aliyun-log-producer:0.3.10'
-compile 'com.aliyun.openservices:aliyun-log:0.6.33'
-compile 'com.google.protobuf:protobuf-java:2.5.0'
-```
+- Counter（计数器）
+- Meter（吞吐率度量器）
+- Histogram（直方分布度量器）
+- Gauge(瞬态值度量器)
+- Timer（吞吐率和响应时间分布度量器）
+- Compass(吞吐率， 响应时间分布， 成功率和错误码度量器)
+- FastCompass(一种快速高效统计吞吐率，平均响应时间，成功率和错误码的度量器)
+- ClusterHistogram(集群分位数度量器)     
 
-## RAM 子账号访问
-如果您使用子账号 AK，请确保该子账号拥有目标 project、logStore 的写权限，具体请参考 [RAM 子用户访问](https://help.aliyun.com/document_detail/29049.html)。
+具体各个度量器的使用方式可以参考[这里](https://github.com/alibaba/metrics/wiki/quick-start)
 
-| Action | Resource |
-|---|---|
-| log:PostLogStoreLogs | acs:log:${regionName}:${projectOwnerAliUid}:project/${projectName}/logstore/${logstoreName} |
-
-## 快速入门
-
-参考教程 [Aliyun LOG Java Producer 快速入门](https://yq.aliyun.com/articles/682761)。
-
-## 原理剖析
-
-参考文章[日志上云利器 - Aliyun LOG Java Producer](https://yq.aliyun.com/articles/682762)。
-
-## 应用示例
-
-https://github.com/aliyun/aliyun-log-producer-sample
-
-## 异常诊断
-
-参考文档[异常诊断](/DIAGNOSIS_CN.md)。
-
-## 常见问题
-
-参考文档[常见问题](/FAQ_CN.md)。
-
-## 关于性能
-
-* [性能测试报告](/PERFORMANCE_CN.md)
-* [性能诊断利器 JProfiler 快速入门和最佳实践](https://yq.aliyun.com/articles/684776)
-
-## 关于升级
-
-Aliyun LOG Java Producer 是对老版 log-loghub-producer 的全面升级，解决了上一版存在的多个问题，包括网络异常情况下 CPU 占用率过高、关闭 producer 可能出现少量数据丢失等问题。另外，在容错方面也进行了加强，即使您存在误用，在资源、吞吐、隔离等方面都有较好的保证。基于上述原因，强烈建议使用老版 producer 的用户进行升级。
-
-## 问题反馈
-如果您在使用过程中遇到了问题，可以创建 [GitHub Issue](https://github.com/aliyun/aliyun-log-producer/issues) 或者前往阿里云支持中心[提交工单](https://workorder.console.aliyun.com/#/ticket/createIndex)。
+默认收集的指标，以及使用http接口进行查看，可以参考[metrics-demo](https://github.com/alibaba/metrics/wiki/demo)

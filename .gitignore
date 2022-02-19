@@ -1,9 +1,10 @@
-.idea/
-local_env
-.local_producerrc
-pics/
 target/
-.DS_Store
-pom.xml.releaseBackup
-release.properties
+.settings/
+.project
+.classpath
+/bin/
+.idea
 *.iml
+.DS_Store
+.flattened-pom.xml
+*.orig
