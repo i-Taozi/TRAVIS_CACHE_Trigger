@@ -13,3 +13,7 @@ matrix:
 
 script:
   - mvn
+
+cache:
+  directories:
+  - $HOME/.m2
