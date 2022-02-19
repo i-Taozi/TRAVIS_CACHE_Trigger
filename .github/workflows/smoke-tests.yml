@@ -1,0 +1,34 @@
+name: Smoke Tests (OpenJDK8)
+
+on: [push, pull_request]
+
+jobs:
+  others:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: joschi/setup-jdk@v2
+        with:
+          java-version: '8'
+      - name: Build with Maven
+        run: mvn -B clean install -P smoke-tests --file pom.xml -fae
+  windows:
+
+    runs-on: windows-latest
+
+    steps:
+      - name: Support longpaths
+        run: git config --system core.longpaths true
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.8
+        uses: joschi/setup-jdk@v2
+        with:
+          java-version: '8'
+      - name: Build with Maven
+        run: mvn -B clean install -P smoke-tests --file pom.xml -fae
+
