@@ -1,104 +1,177 @@
-[![Build Status](https://travis-ci.org/spring-projects/spring-security-oauth.svg?branch=main)](https://travis-ci.org/spring-projects/spring-security-oauth) 
+<!--
+~ Copyright 2012-2017 Thomas Bouffard (redfish4ktc)
+~
+~ Licensed under the Apache License, Version 2.0 (the "License");
+~ you may not use this file except in compliance with the License.
+~ You may obtain a copy of the License at
+~
+~   http://www.apache.org/licenses/LICENSE-2.0
+~
+~ Unless required by applicable law or agreed to in writing,
+~ software distributed under the License is distributed on an
+~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~ KIND, either express or implied.  See the License for the
+~ specific language governing permissions and limitations
+~ under the License.
+-->
 
-### ** Deprecation Notice **
 
-The Spring Security OAuth project is deprecated. The latest OAuth 2.0 support is provided by Spring Security. See the [OAuth 2.0 Migration Guide](https://github.com/spring-projects/spring-security/wiki/OAuth-2.0-Migration-Guide) for further details.
+UPDATE 2021-08-27: **This repository is now archived**. Thanks to all contributors and users of this plugin. \
+I haven't used SoapUI since a long time and I no longer have time to maintain this plugin.
 
-# About
 
-This project provides support for using Spring Security with OAuth
-(1a) and OAuth2.  It provides features for implementing both consumers
-and providers of these protocols using standard Spring and Spring
-Security programming models and configuration idioms.
 
-# Code of Conduct
-This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.adoc).
-By participating, you  are expected to uphold this code. Please report unacceptable behavior to spring-code-of-conduct@pivotal.io.
+maven-soapui-extension-plugin [![Travis Build Status](https://secure.travis-ci.org/redfish4ktc/maven-soapui-extension-plugin.png?branch=master)](https://travis-ci.org/redfish4ktc/maven-soapui-extension-plugin)
+============
 
-# Getting Started
+This plugin adds new features and bug fixes to SmartBear plugins: soapui-pro-maven-plugin and soapui-maven-plugin.  
+For more information about how to use it, see the [wiki](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki).
 
-[Download](https://github.com/spring-projects/spring-security-oauth/tags)
-or clone from
-[GIT](https://github.com/spring-projects/spring-security-oauth) and then
-use Maven (3.0.\*) and Java (1.6 or better):
+Last released version: [4.6.4.2](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki#changelog) (22-November-2014) available on [Maven Central](http://search.maven.org/#search|gav|1|g%3A%22com.github.redfish4ktc.soapui%22%20AND%20a%3A%22maven-soapui-extension-plugin%22)
 
-    $ git clone ...
-    $ mvn install -P bootstrap
 
-Use the `bootstrap` profile only the first time - it enables some
-repositories that can't be exposed in the poms by default. You may
-find it useful to add this profile to your local `settings.xml`.
 
-You need to run Redis to get the build to work.  You can install this 
-using homebrew.  Without Redis running the build will lots of Jedis
-connection exceptions
+News (06-March-2017)
+============
 
-SpringSource ToolSuite users (or Eclipse users with the latest
-m2eclipse plugin) can import the projects as existing Maven projects.
+**Note**: News archives are available in the [wiki](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki#news-archives).
 
-Spring Security OAuth is released under the terms of the Apache
-Software License Version 2.0 (see license.txt).
+This plugin is dormant but it may be updated in the future.  
+Pull requests are welcomed and I still answer to new and pending issues.
 
-## Samples
 
-Samples and integration tests are in [a subdirectory](samples).  There
-is a separate README there for orientation and information.  Once you
-have installed the artifacts locally (as per the getting started
-instructions above) you should be able to
 
-    $ cd samples/oauth2/tonr
-    $ mvn tomcat7:run
-	
-and visit the app in your browser at [http://localhost:8080/tonr2/](http://localhost:8080/tonr2/)
-to check that it works.  (This is for the OAuth 2.0 sample, for the
-OAuth 1.0a sample just remove the "2" from the directory path.) Integration tests
-require slightly different settings for Tomcat so you need to add a profile:
+Main features
+============
 
-    $ cd samples/oauth2/tonr
-    $ mvn integration-test -P integration
+**Documentation**
 
-## Changelog
+  * give [tips](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Tips) about maven plugin configuration (both for maven-soapui-extension-plugin and SmartBear plugins)
+  * provide full documentation of [goals and parameters](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals)
 
-Lists of issues addressed per release can be found in [github](https://github.com/spring-projects/spring-security-oauth/milestones) (older releases are in
-[JIRA](https://jira.spring.io/browse/SECOAUTH/?selectedTab=com.atlassian.jira.jira-projects-plugin:versions-panel)).
 
-## Additional Resources
+**New features**
 
-* [Spring Security OAuth User Guide](https://projects.spring.io/spring-security-oauth/docs/Home.html)
-* [Spring Security OAuth Source](https://github.com/spring-projects/spring-security-oauth)
-* [Stackoverflow](https://stackoverflow.com/questions/tagged/spring-security+spring+oauth)
+  * general
+    * only one plugin for both SoapUI OSS and PRO support (SmartBear provides 2 plugin implementations)
+  * `convert-project` additional goal
+    * [convert-project](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#convert-project) converts composite to standard projects or standard to composite projects
+  * [`mock` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#mock-additional-parameters)
+    * add several parameters to activate and control the coverage report generation when using the pro runner
+    * the `runnerType` parameter lets choose to use the open source or pro runner
+  * `mock-as-war` additional goal
+    * [mock-as-war](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/MockAsWarGoal) generates war file (and/or exploded war) that contains the mockservices defined in the SoapUi project as this can be done from the GUI
+  * [`test` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#test-additional-parameters)
+    * the `junitHtmlReport` parameter lets disable junit html report generation when using the pro runner
+    * the `runnerType` parameter lets choose to use the open source or pro runner 
+    * the `testsuiteProperties` parameter lets override custom properties in test suites
+    * configure the JunitReportCollector to be able to modify xml junit files generation
+  * `test-multi` additional goal
+    * [test-multi](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/TestGoalMultipleProjects) allows to run several projects in the same plugin execution. Choice of projects to be runned is done by scanning one or several directories and selecting which projects to include/exclude 
+  * `test-verify` additional goal
+    * [test-verify](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#test-verify) lets user run soapui tests, perform post processing tasks and then fail the build if some tests have failed. This is very usefull to run [multiple projects](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/TestGoalMultipleProjects)
 
-# Contributing to Spring Security OAuth
 
-Here are some ways for you to get involved in the community:
+**Improvements**
 
-* Get involved with the Spring community on the Spring Community Forums.  Please help out on the
-  [forum](https://forum.spring.io/forumdisplay.php?f=79) by responding to questions and joining the debate.
-* Create [github issues](https://github.com/spring-projects/spring-security-oauth/issues) for bugs and new features and comment and
-  vote on the ones that you are interested in.
-* Github is for social coding: if you want to write code, we encourage contributions through pull requests from
-  [forks of this repository](https://help.github.com/forking/).  If you want to contribute code this way, please
-  reference a github issue as well covering the specific issue you are addressing.
-* Watch for upcoming articles on Spring by [subscribing](https://www.springsource.org/node/feed) to springframework.org
+  * [`test` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#test)
+    * by default, logs are generated in a subdirectory of ${project.build.directory} see the [logs](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Tips#log-configuration) documentation
+    * do not display details of errors as exception stack trace to avoid flooding of the maven console, see [#2](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/2)
+  * [`mock` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#mock)
+    * by default, logs are generated in a subdirectory of ${project.build.directory} see the [logs](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Tips#log-configuration) documentation
 
-Before we accept a non-trivial patch or pull request we will need you to sign the
-[contributor's agreement](https://support.springsource.com/spring_committer_signup).
-Signing the contributor's agreement does not grant anyone commit rights to the main repository, but it does mean that we
-can accept your contributions, and you will get an author credit if we do.  Active contributors might be asked to join
-the core team, and given the ability to merge pull requests.
 
-## Code Conventions and Housekeeping
+**Bug fixes**
 
-None of these is essential for a pull request, but they will all help.  They can also be added after the original pull
-request but before a merge.
+  * almost all SmartBear plugin versions have missing dependencies. This is fixed in maven-soapui-extension-plugin, see the dedicated [dependency issues](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/DependencyIssues) page
+  * fix the 'groovy.log' bug even in pre SoapUI 5 versions, see the [logs](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Tips#log-configuration) documentation
+  * [`mock` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#mock)
+    * make the 'skip' parameter work, see [#35](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/35)
+    * append groovy log messages only once in the console, see [#68](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/68)
+  * [`test` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#test)
+    * append groovy log messages only once in the console, see [#68](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/68) 
 
-* Use the Spring Framework code format conventions. Import `eclipse-code-formatter.xml` from the root of the project
-  if you are using Eclipse. If using IntelliJ, copy `spring-intellij-code-style.xml` to `~/.IntelliJIdea*/config/codestyles`
-  and select spring-intellij-code-style from Settings -> Code Styles.
-* Make sure all new .java files have a simple Javadoc class comment with at least an @author tag identifying you, and
-  preferably at least a paragraph on what the class is for.
-* Add the ASF license header comment to all new .java files (copy from existing files in the project)
-* Add yourself as an @author to the .java files that you modify substantially (more than cosmetic changes).
-* Add some Javadocs and, if you change the namespace, some XSD doc elements.
-* A few unit tests would help a lot as well - someone has to do it.
-* If no-one else is using your branch, please rebase it against the current main (or other target branch in the main project).
+**Tests**
+
+SmartBear maven plugins have almost no tests. Have a look on the [soapui-maven-plugin-tester](https://github.com/SmartBear/soapui/tree/master/soapui-maven-plugin-tester).
+
+maven-soapui-extension-plugin has both unit tests and high-level tests. These high-level tests are
+
+  * executed with the maven-invoker-plugin, this means that these tests are runned with maven plugins on real soapui projects
+  * created to show bug or missing feature in SmartBear implementations
+  * created to show fix, improvement or feature in maven-soapui-extension-plugin
+
+
+
+Roadmap
+============
+
+**Short term**
+
+* support SoapUI 5.0.0, 5.1.0, 5.1.1 and 5.1.2
+* improve the ```test-multi``` goal to run [multiple soapui projects](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/TestGoalMultipleProjects). See [opened issues](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues?labels=goal%3A%3Atest-multi&page=1&state=open)
+* provide a new `JunitReportCollector` to have more details about failures (steps, assertions) in the junit report. See [#42](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/42)
+
+
+**Mid term**
+
+* improve the ```mock-as-war``` goal for generating war from [mock services](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/MockAsWarGoal). See [opened issues](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues?labels=goal%3A%3Amock-as-war&milestone=&page=1&state=open)
+* have a specific implementation for the ```security-test``` goal and implement improvements. See [opened issues](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues?labels=goal%3A%3Asecurity-test&milestone=&page=1&state=open)
+
+**Long term**
+
+* found a way to make report generation work without having a SoapUI installation (PRO feature)
+* add a goal to export wsdl interface from a SoapUI project
+* does not rely on SmartBear maven plugin
+
+
+
+Supported java and maven versions
+============
+  * maven 2.2.1, 3.0.x (tested with 3.0.5), 3.1.x (tested with 3.1.1) and 3.2.x (tested with 3.2.1 and 3.2.3)
+  * java 6 and 7 (soapui needs java 6+ as of version 4.0.0), java 8 experimental support
+
+
+  
+CI Build status
+============
+
+If it is not specified, the CI job
+
+* only builds the master branch
+* uses a shared local maven repository across builds
+* is runned
+  * once a day if code modification occurs
+  * on Linux OS 
+
+
+**List of CI jobs**
+
+* maven 3.3.9, oracle jdk7 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.3.9_oracle_jdk7)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.3.9_oracle_jdk7/)
+* maven 3.2.3, openjdk6, openjdk7, oracle jdk7 and oraclejdk8 (Travis) [![Travis Build Status](https://secure.travis-ci.org/redfish4ktc/maven-soapui-extension-plugin.png?branch=master)](https://travis-ci.org/redfish4ktc/maven-soapui-extension-plugin) - builds all pushes in all branches and pull requests, uses a fresh maven local repository at each build
+* maven 3.2.3, oracle jdk7, Windows OS (AppVeyor) [![Build status](https://ci.appveyor.com/api/projects/status/l2xyyxcy5ixt7fn9?svg=true)](https://ci.appveyor.com/project/redfish4ktc/maven-soapui-extension-plugin)
+* maven 3.2.1, openjdk8 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.2.1_openjdk8/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.2.1_openjdk8/)
+* maven 3.2.1, oracle jdk6 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.2.1_oracle_jdk6/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.2.1_oracle_jdk6/)
+* maven 3.1.1, oracle jdk8 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk8)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk8/)
+* maven 3.1.1, oracle jdk7 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk7)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk7/)
+* maven 3.1.1, oracle jdk6 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk6)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk6/)
+* maven 3.0.5, oracle jdk8 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.0.5_oracle_jdk8)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.0.5_oracle_jdk8/)
+* maven 3.0.5, openjdk8 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.0.5_openjdk8/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.0.5_openjdk8/)
+* maven 3.0.5, oracle jdk6 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.0.5_oracle_jdk6)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.0.5_oracle_jdk6/)
+* maven 2.2.1, openjdk8 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_openjdk8/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_openjdk8/)
+* maven 2.2.1, oracle jdk6 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_oracle_jdk6/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_oracle_jdk6/)
+* maven 2.2.1, oracle jdk7 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_oracle_jdk7/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_oracle_jdk7/)
+
+
+[![Built on CloudBees](http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png)](http://www.cloudbees.com/dev.cb)
+
+[![Built on Travis](http://about.travis-ci.org/images/travis-mascot-200px.png)](https://travis-ci.org/)
+
+<!--
+http://about.travis-ci.org/images/travisci-small.png
+-->
+
+License
+============
+
+maven-soapui-extension-plugin is licensed under the [Apache 2.0 software license](http://www.apache.org/licenses/LICENSE-2.0.html)

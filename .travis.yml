@@ -1,23 +1,18 @@
+# Configuration for Travis CI server
+# Live instance: https://travis-ci.org/redfish4ktc/maven-soapui-extension-plugin
+#
+# WARN: please validate this file after modification by visiting http://lint.travis-ci.org/
+#
 language: java
-
-dist: trusty
-
+# default install is mvn install --quiet -DskipTests=true
+install: mvn --show-version --errors help:system clean initialize -P declareRepositories
+#invoker.streamLogs: we cannot access to log files through Travis web ui, so display everything in the console
+script: mvn --show-version --errors clean verify -P declareRepositories,runIT -Dinvoker.streamLogs=true
 jdk:
-  - openjdk8
+  - oraclejdk8
+  - oraclejdk7
   - openjdk7
-
-services:
-  - redis-server
-
-install: ./mvnw -U install --quiet -DskipTests=true -P bootstrap
-
-script:
-  - jdk_switcher use openjdk7
-  - ./mvnw clean test -P bootstrap
-  - jdk_switcher use openjdk8
-  - ./mvnw -U clean checkstyle:check -P spring5
-  - ./mvnw -f spring-security-oauth2 -U clean test -P spring5
-
-cache:
-  directories:
-  - $HOME/.m2
+  - openjdk6
+notifications:
+  email:
+    - red4ktc-github987225@yahoo.fr
