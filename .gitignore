@@ -1,12 +1,33 @@
-target/
-delombok/
-.mvn/
+# Compiled class file
+*.class
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# IDE Files #
 *.iml
-*.ipr
+.idea
+.idea/
+.project
+.settings
+target
 
-# dumps #
-dumps/*.ec*
+.DS_Store
+.flattened-pom.xml
