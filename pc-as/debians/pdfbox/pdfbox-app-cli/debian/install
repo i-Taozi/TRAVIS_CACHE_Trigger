@@ -1,2 +1,0 @@
-../pdfbox-app-1.7.1.jar usr/share/pdfbox-app-cli
-executeJar.sh usr/share/pdfbox-app-cli
