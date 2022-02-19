@@ -1,21 +1,20 @@
-sudo: required
-
+os: linux
+arch:
+  - amd64
+  - ppc64le
 language: java
 
-services:
-  - docker
+# 23-Mar-2019, tatu: With 1.5.0, must build with JDK8 or above
+jdk:
+  - openjdk8
+  - openjdk11
 
-before_install:
-- docker pull hrchu/mogilefs-all-in-one:version-1.1.5
-- docker run -e DOMAIN_NAME=testdomain -e CLASS_NAMES="testclass1 testclass2" -t -d -p 7001:7001 -p 7500:7500 --name maio hrchu/mogilefs-all-in-one:version-1.1.5
-- timeout 60 nc -zv 127.0.0.1 7001
+addons:
+  apt:
+    packages:
+      - maven
 
-script:
-- mvn verify
-
-after_failure:
-  - cat target/surefire-reports/*.txt
-
-cache:
-  directories:
-  - $HOME/.m2
+# whitelist
+branches:
+  only:
+    - master
