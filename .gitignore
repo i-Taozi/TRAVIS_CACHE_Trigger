@@ -1,12 +1,2 @@
 bin
-.classpath
-.project
-.settings
-.clover
-.externalToolBuilders
 target
-.idea
-*.iml
-**/log4j2-debug.xml
-**/.checkstyle
-*.bak
