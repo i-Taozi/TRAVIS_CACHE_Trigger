@@ -1,546 +1,644 @@
-Nacos Spring Project
-=================================
-
-[![Build Status](https://travis-ci.org/nacos-group/nacos-spring-project.svg?branch=master)](https://travis-ci.org/nacos-group/nacos-spring-project)
-
-[Nacos](https://github.com/alibaba/nacos) is an open source project for discovering, configuring and managing cloud-native applications. Key features of Nacos include:
-
-- Service Discovery and Service Health Check
-- Dynamic Configuration Management
-- Dynamic DNS Service
-- Service and Metadata Management
-
-[Nacos Spring Project](https://github.com/nacos-group/nacos-spring-project), which is based on [Nacos](https://github.com/alibaba/nacos), fully embraces the Spring ecosystem and is designed to help you build Spring applications rapidly. 
-
-The project contains a core module named [`nacos-spring-context`](nacos-spring-context). It enables you to expand modern Java programming models in the following ways:
-
-- [Annotation-Driven](#41-annotation-driven)
-- [Dependency Injection](#42-dependency-injection)
-- [Externalized Configuration](#43-externalized-configuration)
-- [Event-Driven](#44-eventlistener-driven)
-
-These features strongly depend on Spring Framework 3.2+ API, and can be seamlessly integrated with any Spring Stack, such as Spring Boot and Spring Cloud.
-
-**Note:** We recommend that you use annotation-driven programming, even though XML-based features also work.
-
-Content
-===============================
-<!-- TOC -->
-
-- [1. Samples](#1-samples)
-    - [1.1. Samples](#11-samples)
-    - [1.2. How To Run the Samples](#12-how-to-run-the-samples)
-- [2. Dependencies & Compatibility](#2-dependencies--compatibility)
-- [3. Quickstart](#3-quickstart)
-    - [3.1. Prerequisite](#31-prerequisite)
-    - [3.2. Enable Nacos](#32-enable-nacos)
-    - [3.3. Enable configuration service](#33-enable-configuration-service)
-    - [3.4. Enable Service Discovery](#34-enable-service-discovery)
-- [4. Core Features](#4-core-features)
-    - [4.1. Annotation-Driven](#41-annotation-driven)
-        - [4.1.1. Enable Nacos](#411-enable-nacos)
-        - [4.1.2. Configure Change Listener method](#412-configure-change-listener-method)
-            - [4.1.2.1. Type Conversion](#4121-type-conversion)
-            - [4.1.2.2. Timeout of Execution](#4122-timeout-of-execution)
-        - [4.1.3. Global and Special Nacos Properties](#413-global-and-special-nacos-properties)
-        - [4.1.4. `@NacosProperties`](#414-nacosproperties)
-    - [4.2. Dependency Injection](#42-dependency-injection)
-    - [4.3. Externalized Configuration](#43-externalized-configuration)
-    - [4.4. Event/Listener Driven](#44-eventlistener-driven)
-- [5. Modules](#5-modules)
-- [6. Relative Projects](#6-relative-projects)
-
-<!-- /TOC -->
+[![Build Status](https://travis-ci.org/powerflows/powerflows-dmn.svg?branch=master)](https://travis-ci.org/powerflows/powerflows-dmn)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=org.powerflows%3Admn&metric=alert_status)](https://sonarcloud.io/dashboard?id=org.powerflows%3Admn)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.powerflows%3Admn&metric=coverage)](https://sonarcloud.io/component_measures?id=org.powerflows%3Admn&metric=coverage)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.powerflows/dmn-engine/badge.svg)](https://mvnrepository.com/artifact/org.powerflows)
+[![Java Doc](http://www.javadoc.io/badge/org.powerflows/dmn-engine.svg?color=brightgreen)](http://www.javadoc.io/doc/org.powerflows/dmn-engine)
+# About Power Flows DMN
+Power Flows DMN - a powerful decision engine.
 
 
-# 1. Samples
+# Getting Started
+Depending on you would like to use the version 2.x.x (recommended as the latest version) or 1.x.x 
+there are 2 different ways of importing dependencies.
 
-Included in this section are some samples for you to get a quick start with Nacos Spring.
+## Version 2.x.x
 
-## 1.1. Samples
+The Power Flows DMN can be imported as a dependency via:
 
-- [Dependency Injection Sample of `@NacosInjected`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/NacosConfiguration.java)
+### Maven
+```xml
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-engine</artifactId>
+    <version>2.1.0</version>
+</dependency>
+```
+Since in version 2.0.0 Power Flows DMN has been divided into modules,
+a developer can decide what features have to be imported to his project. 
+Therefore, the first decision will be which modeling format of decision tables to be supported. 
+There is a choice between:
+* YAML file - requires **dmn-io-yaml** dependency
+* XML file - requires **dmn-io-xml** dependency
+* Java/Groovy file (fluent and functional) - delivered with **dmn-engine** dependency. In order to use Groovy style, dependency to Groovy is required as well.
+* Kotlin DSL - requires **dmn-kotlin-dsl** dependency
 
-- [Simple Sample of `@NacosConfigListener`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/listener/SimpleNacosConfigListener.java)
+**Surely, Power Flows DMN supports all of them within a single application.**
 
-- [Type Conversion Sample of `@NacosConfigListener`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/listener/PojoNacosConfigListener.java)
+The next step is to add dependencies of expression evaluation languages. 
+The developer can use the all of some of them:
+* Literals - delivered with **dmn-engine** dependency
+* FEEL - requires **dmn-feel-evaluation-provider** dependency
+* JUEL - requires **dmn-juel-evaluation-provider** dependency
+* Groovy - requires **dmn-groovy-evaluation-provider** dependency
+* MVEL - requires **dmn-mvel-evaluation-provider** dependency
+* JavaScript - requires **dmn-javascript-evaluation-provider** dependency
 
-- [Timeout Sample of `@NacosConfigListener`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/listener/TimeoutNacosConfigListener.java)
+Optional dependencies:
+```xml
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-io-yaml</artifactId>
+    <version>2.1.0</version>
+</dependency>
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-io-xml</artifactId>
+    <version>2.1.0</version>
+</dependency>
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-kotlin-dsl</artifactId>
+    <version>2.1.0</version>
+</dependency>
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-feel-evaluation-provider</artifactId>
+    <version>2.1.0</version>
+</dependency>
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-juel-evaluation-provider</artifactId>
+    <version>2.1.0</version>
+</dependency>
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-groovy-evaluation-provider</artifactId>
+    <version>2.1.0</version>
+</dependency>
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-mvel-evaluation-provider</artifactId>
+    <version>2.1.0</version>
+</dependency>
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn-javascript-evaluation-provider</artifactId>
+    <version>2.1.0</version>
+</dependency>
+```
 
-- [Sample of `@NacosConfigurationProperties`/`@NacosProperty`/`@NacosIgnore`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/properties/NacosConfigurationPropertiesConfiguration.java)
+### Gradle
+```gradle    
+compile group: 'org.powerflows', name: 'dmn-engine', version: '2.1.0'
+```
 
-- [Sample of `@NacosPropertySources`/`@NacosPropertySource`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/env/NacosPropertySourceConfiguration.java)
+Optional dependencies:
+```gradle    
+compile group: 'org.powerflows', name: 'dmn-io-yaml', version: '2.1.0'
+compile group: 'org.powerflows', name: 'dmn-io-xml', version: '2.1.0'
+compile group: 'org.powerflows', name: 'dmn-kotlin-dsl', version: '2.1.0'
+compile group: 'org.powerflows', name: 'dmn-feel-evaluation-provider', version: '2.1.0'
+compile group: 'org.powerflows', name: 'dmn-juel-evaluation-provider', version: '2.1.0'
+compile group: 'org.powerflows', name: 'dmn-groovy-evaluation-provider', version: '2.1.0'
+compile group: 'org.powerflows', name: 'dmn-mvel-evaluation-provider', version: '2.1.0'
+compile group: 'org.powerflows', name: 'dmn-javascript-evaluation-provider', version: '2.1.0'
+```
+### Grape
+```groovy
+@Grapes(
+    @Grab(group='org.powerflows', module='dmn-engine', version='2.1.0')
+)
+```   
+Optional dependencies:
+```groovy
+@Grapes([
+    @Grab(group='org.powerflows', module='dmn-io-yaml', version='2.1.0'),
+    @Grab(group='org.powerflows', module='dmn-io-xml', version='2.1.0'),
+    @Grab(group='org.powerflows', module='dmn-kotlin-dsl', version='2.1.0'),
+    @Grab(group='org.powerflows', module='dmn-feel-evaluation-provider', version='2.1.0'),
+    @Grab(group='org.powerflows', module='dmn-juel-evaluation-provider', version='2.1.0'), 
+    @Grab(group='org.powerflows', module='dmn-groovy-evaluation-provider', version='2.1.0'),
+    @Grab(group='org.powerflows', module='dmn-mvel-evaluation-provider', version='2.1.0'),
+    @Grab(group='org.powerflows', module='dmn-javascript-evaluation-provider', version='2.1.0')   
+])
+```  
 
-- [Event/Listener Sample](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/event/NacosEventListenerConfiguration.java)
+## Version 1.x.x
 
-## 1.2. How To Run the Samples
+The Power Flows DMN can be imported as a dependency via:
 
-Take the Spring Web MVC project for example:
+### Maven
+```xml
+<dependency>
+    <groupId>org.powerflows</groupId>
+    <artifactId>dmn</artifactId>
+    <version>1.1.1</version>
+</dependency>
+```
 
-1. Check out the source code of `nacos-spring-project` :
-   
-	` $ git clone git@github.com:nacos-group/nacos-spring-project.git`
+### Gradle
+```gradle    
+compile group: 'org.powerflows', name: 'dmn', version: '1.1.1'
+```
 
-2. Build your source code with Maven:
-    
-	`$ mvn clean package`
-    
-3. Run Spring Web MVC Samples:
-
-      `$ java -jar target/nacos-spring-webmvc-sample.war`
-
-# 2. Dependencies & Compatibility
-
-The following table shows the dependencies and compatabilities of Nacos Spring Project.
-
-| Dependencies   | Compatibility |
-| -------------- | ------------- |
-| Java           | 1.6+         |
-| Spring Context | 3.2+         |
-| [Alibaba Spring Context Support](https://github.com/alibaba/spring-context-support) | 1.0.1+ |
-| [Alibaba Nacos](https://github.com/alibaba/nacos) | 1.1.1+ |
-
-
-
-
-# 3. Quickstart
-
-This quickstart shows you how to enable Nacos and its service discovery and configuration management features in your Spring project.
-
-## 3.1. Prerequisite
-
-Before you configure your Spring project to use Nacos, you need to start a Nacos server in the backend. Refer to [Nacos Quick Start](https://nacos.io/en-us/docs/quick-start.html) for instructions on how to start a Nacos server.
-
-## 3.2. Enable Nacos
-Complete the following steps to enable Nacos for your Spring project.
-
-1. Add [`nacos-spring-context`](nacos-spring-context) in your Spring application's dependencies:
-
-	```xml
-	    <dependencies>
-	        ...
-	        
-	        <dependency>
-	            <groupId>com.alibaba.nacos</groupId>
-	            <artifactId>nacos-spring-context</artifactId>
-	            <version>0.4.0</version>
-	        </dependency>
-	        
-	        ...
-	    </dependencies>
-	```
-
-**Note:** Support Spring 5 from version 0.2.3-RC1.
-
-2. Add the `@EnableNacos` annotation in the `@Configuration` class of Spring and specify "\${host}:${port}" of your Nacos server in the `serverAddr` attribute:
-
-	```java
-	@Configuration
-	@EnableNacos(
-	        globalProperties =
-	        @NacosProperties(serverAddr = "${nacos.server-addr:localhost:12345}")
-	)
-	public class NacosConfiguration {
-	    ...
-	}
-	```
+### Grape
+```groovy
+@Grapes(
+    @Grab(group='org.powerflows', module='dmn', version='1.1.1')
+)
+```   
+ 
+Other ways to import, visit Maven Central repo [https://mvnrepository.com/artifact/org.powerflows/dmn](https://mvnrepository.com/artifact/org.powerflows/dmn) 
 
 
-## 3.3. Enable configuration service
-Now you would like to use the confguration service of Nacos. Simply use **Dependency Injection** to inject `ConfigService` instance in your Spring Beans when `@EnableNacos` is annotated, as shown below: 
 
+# Define your DMN model
+Power Flows model has been designed as an easy to describe and maintain file. The file contains information about input and output data. The additional division is section with rules and their input and output entries.
+
+Power Flows supports the model in the following formats:
+* YAML file;
+* XML file;
+* Java / Groovy file.
+    * Fluent
+    * Functional
+* Kotlin DSL
+## YAML file
+
+```yaml
+id: loan_qualifier
+name: Loan qualifier
+hit-policy: COLLECT
+expression-type: FEEL
+fields:
+  in:
+    age:
+      type: INTEGER
+    activeLoansNumber:
+      description: Number of active loans on user's account
+      type: INTEGER
+      expression-type: LITERAL
+    startDate:
+      type: DATE
+  out:
+    loanAmount:
+      description: Loan amount in Euro
+      type: DOUBLE
+    loanTerm:
+      description: Loan term in months
+      type: INTEGER
+rules:
+- description: Loan for 18 years
+  in:
+    age: 18
+    activeLoansNumber: 0
+    startDate: '[date and time("2019-01-01T12:00:00")..date and time("2019-12-31T12:00:00")]'
+  out:
+    loanAmount: 10000
+    loanTerm: 12
+- in:
+    age: 18
+    startDate: '[date and time("2019-03-01T12:00:00")..date and time("2019-03-31T12:00:00")]'
+  out:
+    loanAmount: 15000
+    loanTerm: 6
+- description: Loan for older than 18 years
+  in:
+    age: '>18'
+  out:
+    loanAmount: 20000
+    loanTerm: 12
+
+```
+
+## Java / Groovy file
+### Using fluent style
+```groovy
+Decision decision = Decision.fluentBuilder()
+.id("loan_qualifier")
+.name("Loan qualifier")
+.hitPolicy(HitPolicy.COLLECT)
+.expressionType(ExpressionType.FEEL)
+.withInputs()
+    .name("age")
+    .type(ValueType.INTEGER)
+    .next()
+    .name("activeLoansNumber")
+    .description("Number of active loans on user's account")
+    .type(ValueType.INTEGER)
+    .withExpression()
+        .type(ExpressionType.LITERAL)
+        .and()
+    .next()
+    .name("startDate")
+    .type(ValueType.DATE)
+.end()
+.withOutputs()
+    .name("loanAmount")
+    .description("Loan amount in Euro")
+    .type(ValueType.DOUBLE)
+    .next()
+    .name("loanTerm")
+    .description("Loan term in months")
+    .type(ValueType.INTEGER)
+.end()
+.withRules()
+    .description("Loan for 18 years")
+    .withInputEntries()
+        .name("age")
+        .withExpression()
+            .type(ExpressionType.FEEL)
+            .value(18)
+            .and()
+        .next()
+        .name("activeLoansNumber")
+        .evaluationMode(EvaluationMode.INPUT_COMPARISON)
+        .withExpression()
+            .type(ExpressionType.LITERAL)
+            .value(0)
+            .and()
+        .next()
+        .name("startDate")
+        .withExpression()
+            .type(ExpressionType.FEEL)
+            .value("[date and time(\"2019-01-01T12:00:00\")..date and time(\"2019-12-31T12:00:00\")]")
+            .and()
+    .end()
+    .withOutputEntries()
+        .name("loanAmount")
+        .withExpression()
+            .type(ExpressionType.LITERAL)
+            .value(10000)
+            .and()
+        .next()
+        .name("loanTerm")
+        .withExpression()
+            .type(ExpressionType.LITERAL)
+            .value(12)
+            .and()
+    .end()
+    .next()
+    .withInputEntries()
+        .name("age")
+        .evaluationMode(EvaluationMode.INPUT_COMPARISON)
+        .withExpression()
+            .type(ExpressionType.LITERAL)
+            .value(18)
+            .and()
+        .next()
+        .name("startDate")
+        .withExpression()
+            .type(ExpressionType.FEEL)
+            .value("[date and time(\"2019-03-01T12:00:00\")..date and time(\"2019-03-31T12:00:00\")]")
+            .and()
+    .end()
+    .withOutputEntries()
+        .name("loanAmount")
+        .withExpression()
+            .type(ExpressionType.LITERAL)
+            .value(15000)
+.           and()
+        .next()
+        .name("loanTerm")
+        .withExpression()
+            .type(ExpressionType.LITERAL)
+            .value(6)
+            .and()
+    .end()
+    .next()
+    .withInputEntries()
+        .name("age")
+        .withExpression()
+            .type(ExpressionType.FEEL)
+            .value(">18")
+            .and()
+    .end()
+    .withOutputEntries()
+        .name("loanAmount")
+        .withExpression()
+            .type(ExpressionType.LITERAL)
+            .value(20000)
+            .and()
+        .next()
+        .name("loanTerm")
+        .withExpression()
+            .type(ExpressionType.LITERAL)
+            .value(12)
+            .and()
+    .end()
+.end()
+.build();
+```
+### Using functional style
 ```java
-@Service
-public class ConfigServiceDemo {
-
-    @NacosInjected
-    private ConfigService configService;
-    
-    public void demoGetConfig() {
-        try {
-            String dataId = "{dataId}";
-            String group = "{group}";
-            String content = configService.getConfig(dataId, groupId, 5000);
-        	System.out.println(content);
-        } catch (NacosException e) {
-            e.printStackTrace();
+Decision decision = Decision.builder()
+.id("loan_qualifier")
+.name("Loan qualifier")
+.hitPolicy(HitPolicy.COLLECT)
+.expressionType(ExpressionType.FEEL)
+.withInput(in -> in
+        .name("age")
+        .type(ValueType.INTEGER)
+        .build())
+.withInput(in -> in
+        .name("activeLoansNumber")
+        .description("Number of active loans on user's account")
+        .type(ValueType.INTEGER)
+        .withExpression(ex -> ex
+                .type(ExpressionType.LITERAL)
+                .build())
+        .build())
+.withInput(in -> in
+        .name("startDate")
+        .type(ValueType.DATE)
+        .build())
+.withOutput(out -> out
+        .name("loanAmount")
+        .description("Loan amount in Euro")
+        .type(ValueType.DOUBLE)
+        .build())
+.withOutput(out -> out
+        .name("loanTerm")
+        .description("Loan term in months")
+        .type(ValueType.INTEGER)
+        .build())
+.withRule(rule -> rule
+        .description("Loan for 18 years")
+        .withInputEntry(in -> in
+                .name("age")
+                .evaluationMode(EvaluationMode.INPUT_COMPARISON)
+                .withExpression(ex -> ex
+                        .type(ExpressionType.LITERAL)
+                        .value(18)
+                        .build())
+                .build())
+        .withInputEntry(in -> in
+                .name("activeLoansNumber")
+                .evaluationMode(EvaluationMode.INPUT_COMPARISON)
+                .withExpression(ex -> ex
+                        .type(ExpressionType.LITERAL)
+                        .value(0)
+                        .build())
+                .build())
+        .withInputEntry(in -> in
+                .name("startDate")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.FEEL)
+                        .value("[date and time(\"2019-01-01T12:00:00\")..date and time(\"2019-12-31T12:00:00\")]")
+                        .build())
+                .build())
+        .withOutputEntry(out -> out
+                .name("loanAmount")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.LITERAL)
+                        .value(10000)
+                        .build())
+                .build())
+        .withOutputEntry(out -> out
+                .name("loanTerm")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.LITERAL)
+                        .value(12)
+                        .build())
+                .build())
+        .build())
+.withRule(rule -> rule
+        .withInputEntry(in -> in
+                .name("age")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.FEEL)
+                        .value(18)
+                        .build())
+                .build())
+        .withInputEntry(in -> in
+                .name("startDate")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.FEEL)
+                        .value("[date and time(\"2019-03-01T12:00:00\")..date and time(\"2019-03-31T12:00:00\")]")
+                        .build())
+                .build())
+        .withOutputEntry(out -> out
+                .name("loanAmount")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.LITERAL)
+                        .value(15000)
+                        .build())
+                .build())
+        .withOutputEntry(out -> out
+                .name("loanTerm")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.LITERAL)
+                        .value(6)
+                        .build())
+                .build())
+        .build())
+.withRule(rule -> rule
+        .withInputEntry(in -> in
+                .name("age")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.FEEL)
+                        .value(">18")
+                        .build())
+                .build())
+        .withOutputEntry(out -> out
+                .name("loanAmount")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.LITERAL)
+                        .value(20000)
+                        .build())
+                .build())
+        .withOutputEntry(out -> out
+                .name("loanTerm")
+                .withExpression(ex -> ex
+                        .type(ExpressionType.LITERAL)
+                        .value(12)
+                        .build())
+                .build())
+        .build())
+.build();
+```
+## Kotlin DSL
+```kotlin
+decision {
+    id = "loan_qualifier"
+    name = "Loan qualifier"
+    hitPolicy = HitPolicy.COLLECT
+    expressionType = ExpressionType.FEEL
+    inputs {
+        input("age") {
+            type = ValueType.INTEGER
+        }
+        input("activeLoansNumber") {
+            description = "Number of active loans on user's account"
+            type = ValueType.INTEGER
+            expression(ExpressionType.LITERAL)
+        }
+        input("startDate") {
+            type = ValueType.DATE
         }
     }
-    ...
-}
-```
-
-`ConfigService` is the key interface of Nacos which helps you to get or publish configurations.
-
-The following code achieves the same effect: 
-
-```java
-try {
-    // Initialize the configuration service, and the console automatically obtains the following parameters through the sample code.
-	String serverAddr = "{serverAddr}";
-	String dataId = "{dataId}";
-	String group = "{group}";
-	Properties properties = new Properties();
-	properties.put("serverAddr", serverAddr);
-	ConfigService configService = NacosFactory.createConfigService(properties);
-    // Actively get the configuration.
-	String content = configService.getConfig(dataId, group, 5000);
-	System.out.println(content);
-} catch (NacosException e) {
-    // TODO Auto-generated catch block
-    e.printStackTrace();
-}
-```
-## 3.4. Enable Service Discovery
-If you would also like to use the service discovery feature of Nacos, you can inject a `NamingService` instance for service discovery:
-
-```java
-    @NacosInjected
-    private NamingService namingService;
-```
-
-For details about the usages of `ConfigService` and `NamingService`, please refer to [Nacos SDK](https://nacos.io/en-us/docs/sdk.html).
-
-
-
-# 4. Core Features
-
-This section provides a detailed description of the key features of [`nacos-spring-context`](nacos-spring-context):
-
-- [Annotation-Driven](#annotation-driven)
-- [Dependency Injection](#dependency-injection)
-- [Externalized Configuration](#externalized-configuration)
-- [Event-Driven](#eventlistener-driven)
-
-
-
-## 4.1. Annotation-Driven
-
-### 4.1.1. Enable Nacos
-
-`@EnableNacos` is a modular-driven annotation that enables all features of Nacos Spring, including **Service Discovery** and **Distributed Configuration**. It equals to  `@EnableNacosDiscovery` and 
-`@EnableNacosConfig`, which can be configured separately and used in different scenarios.
-
-### 4.1.2. Configure Change Listener method
-
-Suppose there was a config in Nacos Server whose `dataId` is "testDataId" and `groupId` is default group("DEFAULT_GROUP"). Now you would like to change its content by using the `ConfigService#publishConfig` method:
-
-```java
-    @NacosInjected
-    private ConfigService configService;
-
-    @Test
-    public void testPublishConfig() throws NacosException {
-        configService.publishConfig(DATA_ID, DEFAULT_GROUP, "9527");
-    }
-```
-
-Then you would like to add a listener, which will be listening for the config changes. You can do this by adding a config change listener method into your Spring Beans:
-
-```java
-    @NacosConfigListener(dataId = DATA_ID)
-    public void onMessage(String config) {
-        assertEquals("mercyblitz", config); // asserts true
-    }
-```
-
-The code below has the same effect:
-
-```java
-	configService.addListener(DATA_ID, DEFAULT_GROUP, new AbstractListener() {
-        @Override
-        public void receiveConfigInfo(String config) {
-            assertEquals("9527", config); // asserts true
+    outputs {
+        output("loanAmount") {
+            description = "Loan amount in Euro"
+            type = ValueType.DOUBLE
         }
-    });
-```
-
-**Note:** `@NacosConfigListener` supports richer type conversions.
-
-- See [Simple Sample of `@NacosConfigListener`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/listener/SimpleNacosConfigListener.java)
-
-
-
-
-#### 4.1.2.1. Type Conversion
-
-The type conversion of `@NacosConfigListener` includes both build-in and customized implementations. By default, build-in type conversion is based on Spring `DefaultFormattingConversionService`, which means it covers most of the general cases as well as the rich features of the higher Spring framework. 
-
-For example, the content "9527" in the preceding example can also be listened by a method with integer or the `Integer` argument:
-
-```java
-    @NacosConfigListener(dataId = DATA_ID)
-    public void onInteger(Integer value) {
-        assertEquals(Integer.valueOf(9527), value); // asserts true
+        output("loanTerm") {
+            description = "Loan term in months"
+            type = ValueType.INTEGER
+        }
     }
-
-    @NacosConfigListener(dataId = DATA_ID)
-    public void onInt(int value) {
-        assertEquals(9527, value); // asserts true
-    }
-```
-
-Of course, [`nacos-spring-context`](nacos-spring-context) provides elastic extension for developers. If you define a named `nacosConfigConversionService` Spring Bean whose type is `ConversionService` , the `DefaultFormattingConversionService` will be ignored. In addition, you can customize the implementation of  the `NacosConfigConverter` interface to specify a listener method for type conversion:
-
-```java
-public class UserNacosConfigConverter implements NacosConfigConverter<User> {
-
-    @Override
-    public boolean canConvert(Class<User> targetType) {
-        return true;
-    }
-
-    @Override
-    public User convert(String source) {
-        return JSON.parseObject(source, User.class);
-    }
-}
-```
-
-The `UserNacosConfigConverter` class binds the `@NacosConfigListener.converter()` attribute:
-
-```java
-	@NacosInjected
-    private ConfigService configService;
-
-	@Test
-    public void testPublishUser() throws NacosException {
-        configService.publishConfig("user", DEFAULT_GROUP, "{\"id\":1,\"name\":\"mercyblitz\"}");
-    }
-
-    @NacosConfigListener(dataId = "user", converter = UserNacosConfigConverter.class)
-    public void onUser(User user) {
-        assertEquals(Long.valueOf(1L), user.getId()); 
-        assertEquals("mercyblitz", user.getName());
-    }
-```
-
-
-
-
-- See [Type Conversion Sample of `@NacosConfigListener`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/listener/PojoNacosConfigListener.java)
-
-
-
-
-#### 4.1.2.2. Timeout of Execution
-
-As it might cost some time to run customized `NacosConfigConverter`, you can set  max execution time in the `@NacosConfigListener.timeout()` attribute to prevent it from blocking other listeners:
-
-```java
-@Configuration
-public class Listeners {
-
-    private Integer integerValue;
-
-    private Double doubleValue;
-
-    @NacosConfigListener(dataId = DATA_ID, timeout = 50)
-    public void onInteger(Integer value) throws Exception {
-        Thread.sleep(100); // timeout of execution
-        this.integerValue = value;
-    }
-
-    @NacosConfigListener(dataId = DATA_ID, timeout = 200)
-    public void onDouble(Double value) throws Exception {
-        Thread.sleep(100); // normal execution
-        this.doubleValue = value;
-    }
-
-    public Integer getIntegerValue() {
-        return integerValue;
-    }
-
-    public Double getDoubleValue() {
-        return doubleValue;
+    rules {
+        rule {
+            input("age") {
+                value = 18
+            }
+            input("activeLoansNumber")
+            input("startDate") {
+                expression("[date and time(\"2019-01-01T12:00:00\")..date and time(\"2019-12-31T12:00:00\")]")
+            }
+            output("loanAmount") {
+                value = 10000
+            }
+            output("loanTerm") {
+                value = 12
+            }
+        }
+        rule {
+            input("age") {
+                value = 18
+            }
+            input("startDate") {
+                expression("[date and time(\"2019-03-01T12:00:00\")..date and time(\"2019-03-31T12:00:00\")]")
+            }
+            output("loanAmount") {
+                value = 15000
+            }
+            output("loanTerm") {
+                value = 6
+            }
+        }
+        rule {
+            description = "Loan for older than 18 years"
+            input("age") {
+                expression(">18")
+            }
+            output("loanAmount") {
+                value = 20000
+            }
+            output("loanTerm") {
+                value = 12
+            }
+        }
     }
 }
 ```
+# Use IO to import/export your model
+Thanks to IO module there is a possibility to:
+* Read decisions from Power Flows *.yml files;
+* Read decisions from DMN 1.1 *.xml files;
+* Write decisions to *.yml files.
 
-The `integerValue` of `Listeners` Bean is always `null` and will not be changed. Therefore, those asserts will be `true`:
+## Reading
+The follow example shows how to read *.yml file and get decision object.
+First of all input stream is needed. Then, using YamlDecisionReader class a developer can read the decision from the input stream.
 
-```java
-    @Autowired
-    private Listeners listeners;
-
-    @Test
-    public void testPublishConfig() throws NacosException {
-        configService.publishConfig(DATA_ID, DEFAULT_GROUP, "9527");
-        assertNull(listeners.getIntegerValue()); // asserts true
-        assertEquals(Double.valueOf(9527), listeners.getDoubleValue());   // asserts true
-    }
-```
-
-
-
-
-- See [Timeout Sample of `@NacosConfigListener`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/listener/TimeoutNacosConfigListener.java)
-
-### 4.1.3. Global and Special Nacos Properties
-
-The `globalProperties` is a required attribute in any `@EnableNacos`, `@EnableNacosDiscovery` or `@EnableNacosConfig`, and its type is `@NacosProperties`. `globalProperties` initializes "**Global Nacos Properties**" that will be used by other annotations 
-and components, e,g `@NacosInjected`. In other words, **Global Nacos Properties**" defines the global and default properties. It is set with the lowest priority and can be overridden if needed. The precedence of overiding rules is shown in the following table:
-
-| Precedence Order | Nacos Annotation                                             | Required |
-| ---------------- | ------------------------------------------------------------ | -------- |
-| 1                | `*.properties()`                                             | N        |
-| 2                | `@EnableNacosConfig.globalProperties()` or `@EnableNacosDiscovery.globalProperties()` | Y        |
-| 3                | `@EnableNacos.globalProperties()`                            | Y        |
-
-
-`*.properties()` defines special Nacos properties which come from one of the following:  
-
-- `@NacosInjected.properties()` 
-- `@NacosConfigListener.properties()`
-- `@NacosPropertySource.properties()` 
-- `@NacosConfigurationProperties.properties()`
-
-Special Nacos properties are also configured by `@NacosProperties`. However, they are optional and are used to override Global Nacos Properties in special scenarios. If not defined, the Nacos Properties will 
-try to retrieve properities from `@EnableNacosConfig.globalProperties()` or `@EnableNacosDiscovery.globalProperties()`, or 
-`@EnableNacos.globalProperties()`.
-
-
-
-### 4.1.4. `@NacosProperties`
-
-`@NacosProperties` is a uniform annotation for global and special Nacos properties. It serves as a mediator between Java `Properties` and `NacosFactory` class.   `NacosFactory` is responsible for creating `ConfigService` or `NamingService` instances. 
-
-The attributes of `@NacosProperties` completely support placeholders whose source is all kinds of `PropertySource` in Spring `Environment` abstraction, typically Java System `Properties` and OS environment variables. The prefix of all placeholders are `nacos.`.  The mapping between the attributes of `@NacosProperties` and Nacos properties are shown below: 
-
-| Attribute       | Property       | Placeholder              | Description | Required  |
-| --------------- | -------------- | ------------------------ | ----------- | --------- |
-| `endpoint()`    | `endpoint`     | `${nacos.endpoint:}`     |             |     N     |
-| `namespace()`   | `namespace`    | `${nacos.namespace:}`    |             |     N     |
-| `accessKey()`   | `access-key`   | `${nacos.access-key:}`   |             |     N     |
-| `secretKey()`   | `secret-key`   | `${nacos.secret-key:}`   |             |     N     |
-| `serverAddr()`  | `server-addr`  | `${nacos.server-addr:}`  |             |     Y     |
-| `contextPath()` | `context-path` | `${nacos.context-path:}` |             |     N     |
-| `clusterName()` | `cluster-name` | `${nacos.cluster-name:}` |             |     N     |
-| `encode()`      | `encode`       | `${nacos.encode:UTF-8}`  |             |     N     |
-
-
-Note that there are some differences in the placeholders of `globalProperties()` between `@EnableNacosDiscovery` and `@EnableNacosConfig`:
-
-
-| Attribute       | `@EnableNacosDiscovery`'s Placeholder                     |`@EnableNacosConfig`'s Placeholder  |
-| --------------- | -------------------------------------------------------- | -------------------------------------------------    |
-| `endpoint()`    | `${nacos.discovery.endpoint:${nacos.endpoint:}}`         |`${nacos.config.endpoint:${nacos.endpoint:}}`         |
-| `namespace()`   | `${nacos.discovery.namespace:${nacos.namespace:}}`       |`${nacos.config.namespace:${nacos.namespace:}}`       |
-| `accessKey()`   | `${nacos.discovery.access-key:${nacos.access-key:}}`     |`${nacos.config.access-key:${nacos.access-key:}}`     |
-| `secretKey()`   | `${nacos.discovery.secret-key:${nacos.secret-key:}}`     |`${nacos.config.secret-key:${nacos.secret-key:}}`     |
-| `serverAddr()`  | `${nacos.discovery.server-addr:${nacos.server-addr:}}`   | `${nacos.config.server-addr:${nacos.server-addr:}}`   |
-| `contextPath()` | `${nacos.discovery.context-path:${nacos.context-path:}}` | `${nacos.config.context-path:${nacos.context-path:}}` |
-| `clusterName()` | `${nacos.discovery.cluster-name:${nacos.cluster-name:}}` |`${nacos.config.cluster-name:${nacos.cluster-name:}}` |
-| `encode()`      | `${nacos.discovery.encode:${nacos.encode:UTF-8}}`        |`${nacos.config.encode:${nacos.encode:UTF-8}}`        |
-
-
-
-These placeholders of `@EnableNacosDiscovery` and `@EnableNacosConfig` are designed to isolate different Nacos servers, and are unnecessary in most scenarios.  By default, general placeholders will be reused.
-
-
-
-
-## 4.2. Dependency Injection
-
-`@NacosInjected` is a core annotation which is used to inject `ConfigService` or `NamingService` instance in your Spring Beans and make these instances **cacheable**. This means the instances will be the same if their `@NacosProperties` are equal, regargless of whether the properties come from global or special Nacos properties:
+Create input stream from file:
 
 ```java
-    @NacosInjected
-    private ConfigService configService;
-
-    @NacosInjected(properties = @NacosProperties(encode = "UTF-8"))
-    private ConfigService configService2;
-
-    @NacosInjected(properties = @NacosProperties(encode = "GBK"))
-    private ConfigService configService3;
-
-    @NacosInjected
-    private NamingService namingService;
-
-    @NacosInjected(properties = @NacosProperties(encode = "UTF-8"))
-    private NamingService namingService2;
-
-    @NacosInjected(properties = @NacosProperties(encode = "GBK"))
-    private NamingService namingService3;
-
-    @Test
-    public void testInjection() {
-
-        Assert.assertEquals(configService, configService2);
-        Assert.assertNotEquals(configService2, configService3);
-
-        Assert.assertEquals(namingService, namingService2);
-        Assert.assertNotEquals(namingService2, namingService3);
-    }
+File loanQualifierFile = new File("loan-qualifier.yml");
+InputStream loanQualifierInputStream = new FileInputStream(loanQualifierFile);
 ```
 
-The property `configService` uses `@EnableNacos#globalProperties()` or `@EnableNacosConfig#globalProperties()`, and because the default value of the `encode` attribute is “UTF-8”, therefore the `configService` instance and the `configService2` instance which is annotated by `@NacosProperties(encode = "UTF-8")` are the same. The same is true for `namingService` and `namingService2`.
+or from resource:
 
-More importantly, unlike the `ConfigService` instances created by the `NacosFactory.createConfigService()` method, the `ConfigService` instances created by the `@NacosInjected` annotation support Nacos Spring events. For instance, there will be an `NacosConfigPublishedEvent`  after an enhanced `ConfigService` invokes the `publishConfig()` method. Refer to the [Event/Listener Driven](#eventlistener-driven) section for more details.
+```java
+InputStream loanQualifierInputStream = this.class.getResourceAsStream("loan-qualifier.yml");
+```
 
+And read the input stream:
 
+```java
+Optional<Decision> loanQualifierDecision = new YamlDecisionReader().read(loanQualifierInputStream);
+```
 
+Another source of Decision may be OMG defined DMN 1.1 compatible XML file.
 
-- See [Dependency Injection Sample](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/NacosConfiguration.java)
+Create input stream from file:
 
+```java
+File loanQualifierFile = new File("loan-qualifier.xml");
+InputStream loanQualifierInputStream = new FileInputStream(loanQualifierFile);
+```
 
+or from resource:
 
+```java
+InputStream loanQualifierInputStream = this.class.getResourceAsStream("loan-qualifier.xml");
+```
 
-## 4.3. Externalized Configuration
+And read the input stream:
 
-Externalized configuration is a concept introduced by Spring Boot, which allows applications to receive external property sources to control runtime behavior. Nacos Server runs an isolation process outside the application to maintain the application configurations. [`nacos-spring-context`](nacos-spring-context) provides properties features including object binding, dynamic configuration(auto-refreshed) and so on, and dependence on Spring Boot or Spring Cloud framework is required.
+```java
+Optional<Decision> loanQualifierDecision = new XmlDecisionReader().read(loanQualifierInputStream);
+```
+Currently only reading of decision tables from _decision_ tags is supported.
 
-Here is a simple comparison between  [`nacos-spring-context`](nacos-spring-context) and Spring stack:
+## Writing
+The IO module can be used to conversion between different formats. For now the only one supported is *.yml.
 
-| Spring Stack               | Nacos Spring                    | Highlight                                      |
-| -------------------------- | ------------------------------- | ---------------------------------------------- |
-| `@Value`                   | `@NacosValue`                   | auto-refreshed                                 |
-| `@ConfigurationProperties` | `@NacosConfigurationProperties` | auto-refreshed,`@NacosProperty`,`@NacosIgnore` |
-| `@PropertySource`          | `@NacosPropertySource`          | auto-refreshed, precedence order control       |
-| `@PropertySources`         | `@NacosPropertySources`         |                                                |
+```java
+Decision decision = ... //here developer has to build a valid decision object or read from *.yml or *.xml file
 
+DecisionWriter writer = new YamlDecisionWriter();
+FileOutputStream outputStream = new FileOutputStream("your-decision-file-name.yml");
 
+writer.write(decision, outputStream);
+```
 
+# Decision Engine for decisions evaluation
+A decision engine is a service that allows evaluation of decision tables. Default decision engine instance can be created using
+DefaultDecisionEngineConfiguration class. Decision engine expects decision object and decision variables.
 
-- See [Auto-Refreshed Sample of `@NacosConfigurationProperties`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/properties/NacosConfigurationPropertiesConfiguration.java)
+## Evaluation
+The result of an evaluation process is decision result object.
 
+```java
+Decision decision = ... //here developer has to build a valid decision object or read from *.yml or *.xml file
+DecisionEngine decisionEngine = new DefaultDecisionEngineConfiguration().configure();
 
+SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-- See [Sample of `@NacosPropertySources` and `@NacosPropertySource`](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/env/NacosPropertySourceConfiguration.java)
+Map<String, Serializable> variables = new HashMap<>();
+variables.put("age", 18);
+variables.put("activeLoansNumber", 0);
+variables.put("startDate", format.parse("2019-01-05"));
+DecisionVariables decisionVariables = new DecisionVariables(variables);
 
+DecisionResult decisionResult = decisionEngine.evaluate(decision, decisionVariables);
+```
+The decision result has methods like follows:
+```java
+decisionResult.isSingleEntryResult();
+decisionResult.isSingleRuleResult();
+decisionResult.isCollectionRulesResult();
+decisionResult.getSingleEntryResult();
+decisionResult.getSingleRuleResult();
+decisionResult.getCollectionRulesResult();
+```
 
+## Supported languages
+Power Flows supports evaluation in following languages:
+* FEEL
+* JUEL
+* Groovy
+* MVEL
+* JavaScript
 
-## 4.4. Event/Listener Driven
+## Much more features
+Power Flows brings with it lots of features described in [WIKI](https://github.com/powerflows/powerflows-dmn/wiki).
 
-Nacos Event/Listener Driven is based on the standard Spring Event/Listener mechanism. The `ApplicationEvent` of Spring is an abstract super class for all Nacos Spring events:
+### [How to contribute to the repository](CONTRIBUTING.md)
 
-| Nacos Spring Event                           | Trigger                                                      |
-| -------------------------------------------- | ------------------------------------------------------------ |
-| `NacosConfigPublishedEvent`                  | After `ConfigService.publishConfig()`                        |
-| `NacosConfigReceivedEvent`                   | After`Listener.receiveConfigInfo()`                          |
-| `NacosConfigRemovedEvent`                    | After `configService.removeConfig()`                         |
-| `NacosConfigTimeoutEvent`                    | `ConfigService.getConfig()` on timeout                       |
-| `NacosConfigListenerRegisteredEvent`         | After `ConfigService.addListner()` or `ConfigService.removeListener()` |
-| `NacosConfigurationPropertiesBeanBoundEvent` | After `@NacosConfigurationProperties` binding                |
-| `NacosConfigMetadataEvent`                   | After Nacos Config operations                                |
+# License
+Copyright (c) 2018-present Power Flows. All rights reserved.
 
-- See [Event/Listener Sample](https://github.com/nacos-group/nacos-spring-project/blob/master/nacos-spring-samples/nacos-spring-webmvc-sample/src/main/java/com/alibaba/nacos/samples/spring/event/NacosEventListenerConfiguration.java)
-
-
-
-
-
-
-
-# 5. Modules
-
-- [`nacos-spring-context`](nacos-spring-context)
-  
-- [`nacos-spring-samples`](nacos-spring-samples)
-
-
-
-# 6. Relative Projects
-
-- [Alibaba Nacos](https://github.com/alibaba/nacos)
-- [Alibaba Spring Context Support](https://github.com/alibaba/spring-context-support)
+Power Flows DMN Model is Open Source software released under the [Apache 2.0 license.](http://www.apache.org/licenses/LICENSE-2.0.html)

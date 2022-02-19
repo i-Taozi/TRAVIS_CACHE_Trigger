@@ -1,18 +1,15 @@
-notifications:
-  email:
-    recipients:
-      - nacos_dev@linux.alibaba.com
-      - dev-nacos@googlegroups.com
-  on_success: change
-  on_failure: always
-
 language: java
-
+sudo: required
+dist: trusty
 jdk:
-  - openjdk11
-  - openjdk8
+  - oraclejdk8
+install: true
+
+addons:
+  sonarcloud:
+    organization: "power_flows"
+    token:
+      secure: "lJ+pLQ+nKuKvJlTXFhD4BD9vAVn/OVssUJHsRQ//Ad5DjEdwtl5dbD445UnqrXzyXB4ewmATfe9a8QWI+oyDNfBQwD/yBvoY3pR/iaxDXRkckMMYOMhmgpyU+NHiKCOkq6ZGmK4RSKaS9of8f7YTT+rNQWxc3h1RsHIzdF7vs+v8/cUqyJ8mjocveoFSgxeeVbOBGwQj+R1p2JEdkb0/7SbBu2qwKehpHim3c0Zu2BZQfK6DcCmpmlDiJvtOZ26JKM7DAIgu1ZFJ2Rpqjpa3s5cjdDsVwF61TIZhvAXrKaX3g3aFeGJPAdk8KSCxQnthXB9ICt0JUjC8fnK+FvlMoPNFUfeduFocIYc/XkeI2v5oS0emhs+ZK2CfOSkLafR8n5jozmX7IvlcTiPNnCfmYTq5hmfh8wxbXKxJI+FEcZSD7DVe6C9VeP6eEp3K6+w1WTURlY+Qw+e+ut7tT641mFHCI9W+a33wpgVg/Fzo85RKRL05eCHyp7gIuPr+KIqbTstv70MigsjLAcv8dFMLy31Ta26ocsZLtkhL6ONDzTLjbhPjQlVV4UANvvdWqs93q+h0SkjrSrjzHKGQF5wkFKHNZOD5MGIZLuekXPEjfDqS4/LqrEuLs7YoE5+CVoNwcV/GGaBargiVnmc5jC+6rODoEYAZz20nkG+oE4yCVJI="
 
 script:
-cache:
-  directories:
-  - $HOME/.m2
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
