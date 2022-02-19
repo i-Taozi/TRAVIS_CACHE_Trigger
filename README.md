@@ -1,177 +1,122 @@
-<!--
-~ Copyright 2012-2017 Thomas Bouffard (redfish4ktc)
-~
-~ Licensed under the Apache License, Version 2.0 (the "License");
-~ you may not use this file except in compliance with the License.
-~ You may obtain a copy of the License at
-~
-~   http://www.apache.org/licenses/LICENSE-2.0
-~
-~ Unless required by applicable law or agreed to in writing,
-~ software distributed under the License is distributed on an
-~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-~ KIND, either express or implied.  See the License for the
-~ specific language governing permissions and limitations
-~ under the License.
--->
+# Morn Boot Projects
 
+[![Maven Central](https://img.shields.io/maven-central/v/site.morn.boot/morn-boot-projects)](https://search.maven.org/search?q=morn-boot-projects)
+[![Build Status](https://app.travis-ci.com/morn-team/morn-boot-projects.svg?branch=master)](https://app.travis-ci.com/morn-team/morn-boot-projects)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/314790ce1238478c8607ebfd5425a3af)](https://www.codacy.com/gh/morn-team/morn-boot-projects/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=morn-team/morn-boot-projects&amp;utm_campaign=Badge_Grade)
+[![codecov](https://codecov.io/gh/morn-team/morn-boot-projects/branch/master/graph/badge.svg?token=YjvGgM8qf9)](https://codecov.io/gh/morn-team/morn-boot-projects)
+[![LICENSE](https://img.shields.io/badge/license-Apache--2.0-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+![GitHub top language](https://img.shields.io/github/languages/top/morn-team/morn-boot-projects)
 
-UPDATE 2021-08-27: **This repository is now archived**. Thanks to all contributors and users of this plugin. \
-I haven't used SoapUI since a long time and I no longer have time to maintain this plugin.
+MornBoot是基于SpringBoot的标准API框架，致力于为JavaWeb项目提供标准化API。MornBoot初衷是提供简洁的、可拓展的通用功能实现，为SpringBoot项目提供一个良好的开端。MornBoot侧重于开发风格、标准、规范，提供开箱即用的优秀实践。
 
+> 如果你的所有项目都使用同一套API开发，那么更新、维护将变得多么简单！
 
+## Features
 
-maven-soapui-extension-plugin [![Travis Build Status](https://secure.travis-ci.org/redfish4ktc/maven-soapui-extension-plugin.png?branch=master)](https://travis-ci.org/redfish4ktc/maven-soapui-extension-plugin)
-============
+* “零配置”轻量级框架
+* 相同API，不同结果呈现
+* 极简风格代码，良好可读性
+* 友好的IDE提示信息
 
-This plugin adds new features and bug fixes to SmartBear plugins: soapui-pro-maven-plugin and soapui-maven-plugin.  
-For more information about how to use it, see the [wiki](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki).
+## Getting Help
 
-Last released version: [4.6.4.2](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki#changelog) (22-November-2014) available on [Maven Central](http://search.maven.org/#search|gav|1|g%3A%22com.github.redfish4ktc.soapui%22%20AND%20a%3A%22maven-soapui-extension-plugin%22)
+MornBoot没有强制依赖SpringBoot，你必须在项目中引入SpringBoot相关包，好处是你可以自由选择依赖版本。建议SpringBoot版本为2.1.X。
 
+[ApplicationMessage]:https://github.com/morn-team/morn-boot-projects/wiki/ApplicationMessage-%E5%BA%94%E7%94%A8%E6%B6%88%E6%81%AF
 
+[BeanEnhance]:https://github.com/morn-team/morn-boot-projects/wiki/BeanEnhance-%E5%AE%9E%E4%BE%8B%E5%A2%9E%E5%BC%BA
 
-News (06-March-2017)
-============
+[CacheGroup]:https://github.com/morn-team/morn-boot-projects/wiki/CacheGroup-%E5%88%86%E7%BB%84%E7%BC%93%E5%AD%98
 
-**Note**: News archives are available in the [wiki](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki#news-archives).
+[Cipher]:https://github.com/morn-team/morn-boot-projects/wiki/Cipher-%E6%B6%88%E6%81%AF%E5%8A%A0%E5%AF%86
 
-This plugin is dormant but it may be updated in the future.  
-Pull requests are welcomed and I still answer to new and pending issues.
+[ExceptionInterpreter]:https://github.com/morn-team/morn-boot-projects/wiki/ExceptionInterpreter-%E5%BC%82%E5%B8%B8%E8%A7%A3%E9%87%8A
 
+[JpaAssist]:https://github.com/morn-team/morn-boot-projects/wiki/JpaAssist-JPA%E8%BE%85%E5%8A%A9
 
+[JSON]:https://github.com/morn-team/morn-boot-projects/wiki/JSON-%E5%BA%8F%E5%88%97%E5%8C%96
 
-Main features
-============
+[MessageQueue]:https://github.com/morn-team/morn-boot-projects/wiki/MessageQueue-%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97
 
-**Documentation**
+[MornBoot]:https://github.com/morn-team/morn-boot-projects
 
-  * give [tips](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Tips) about maven plugin configuration (both for maven-soapui-extension-plugin and SmartBear plugins)
-  * provide full documentation of [goals and parameters](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals)
+[Notify]:https://github.com/morn-team/morn-boot-projects/wiki/Notify-%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5
 
+[OperationLog]:https://github.com/morn-team/morn-boot-projects/wiki/OperationLog-%E6%93%8D%E4%BD%9C%E6%97%A5%E5%BF%97
 
-**New features**
+[ParamsValidation]:https://github.com/morn-team/morn-boot-projects/wiki/ParamsValidation-%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C
 
-  * general
-    * only one plugin for both SoapUI OSS and PRO support (SmartBear provides 2 plugin implementations)
-  * `convert-project` additional goal
-    * [convert-project](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#convert-project) converts composite to standard projects or standard to composite projects
-  * [`mock` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#mock-additional-parameters)
-    * add several parameters to activate and control the coverage report generation when using the pro runner
-    * the `runnerType` parameter lets choose to use the open source or pro runner
-  * `mock-as-war` additional goal
-    * [mock-as-war](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/MockAsWarGoal) generates war file (and/or exploded war) that contains the mockservices defined in the SoapUi project as this can be done from the GUI
-  * [`test` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#test-additional-parameters)
-    * the `junitHtmlReport` parameter lets disable junit html report generation when using the pro runner
-    * the `runnerType` parameter lets choose to use the open source or pro runner 
-    * the `testsuiteProperties` parameter lets override custom properties in test suites
-    * configure the JunitReportCollector to be able to modify xml junit files generation
-  * `test-multi` additional goal
-    * [test-multi](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/TestGoalMultipleProjects) allows to run several projects in the same plugin execution. Choice of projects to be runned is done by scanning one or several directories and selecting which projects to include/exclude 
-  * `test-verify` additional goal
-    * [test-verify](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#test-verify) lets user run soapui tests, perform post processing tasks and then fail the build if some tests have failed. This is very usefull to run [multiple projects](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/TestGoalMultipleProjects)
+[PersistFunction]:https://github.com/morn-team/morn-boot-projects/wiki/PersistFunction-%E6%8C%81%E4%B9%85%E5%8C%96%E5%87%BD%E6%95%B0
 
+[RestMessage]:https://github.com/morn-team/morn-boot-projects/wiki/RestMessage-REST%E6%B6%88%E6%81%AF
 
-**Improvements**
+[SpringBoot]:https://spring.io/projects/spring-boot
 
-  * [`test` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#test)
-    * by default, logs are generated in a subdirectory of ${project.build.directory} see the [logs](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Tips#log-configuration) documentation
-    * do not display details of errors as exception stack trace to avoid flooding of the maven console, see [#2](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/2)
-  * [`mock` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#mock)
-    * by default, logs are generated in a subdirectory of ${project.build.directory} see the [logs](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Tips#log-configuration) documentation
+## Quick Start
 
+### Maven Dependency
 
-**Bug fixes**
+最新版本: [![Maven Central](https://img.shields.io/maven-central/v/site.morn.boot/morn-boot-projects)](https://search.maven.org/search?q=morn-boot-projects)
 
-  * almost all SmartBear plugin versions have missing dependencies. This is fixed in maven-soapui-extension-plugin, see the dedicated [dependency issues](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/DependencyIssues) page
-  * fix the 'groovy.log' bug even in pre SoapUI 5 versions, see the [logs](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Tips#log-configuration) documentation
-  * [`mock` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#mock)
-    * make the 'skip' parameter work, see [#35](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/35)
-    * append groovy log messages only once in the console, see [#68](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/68)
-  * [`test` goal](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/Goals#test)
-    * append groovy log messages only once in the console, see [#68](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/68) 
+```
+<!--自动化配置-->
+<dependency>
+  <groupId>site.morn.boot</groupId>
+  <artifactId>morn-boot-autoconfigure</artifactId>
+  <version>${morn.version}</version>
+</dependency>
+<!--核心库-->
+<dependency>
+  <groupId>site.morn.boot</groupId>
+  <artifactId>morn-boot-core</artifactId>
+  <version>${morn.version}</version>
+</dependency>
+```
 
-**Tests**
+### 必要配置
 
-SmartBear maven plugins have almost no tests. Have a look on the [soapui-maven-plugin-tester](https://github.com/SmartBear/soapui/tree/master/soapui-maven-plugin-tester).
+SpringBootApplication
 
-maven-soapui-extension-plugin has both unit tests and high-level tests. These high-level tests are
+```
+@EnableCaching // 开启缓存
+```
 
-  * executed with the maven-invoker-plugin, this means that these tests are runned with maven plugins on real soapui projects
-  * created to show bug or missing feature in SmartBear implementations
-  * created to show fix, improvement or feature in maven-soapui-extension-plugin
+## Reference
 
+### Specification 规范
 
+基于[SpringBoot][SpringBoot]提供常用业务组件的基础规范及组件，这些组件更类似优秀实践。
+它们介于实际业务和Framework之间，同时这也是[MornBoot][MornBoot]框架的定位。 不同业务框架往往会开发各式各样的业务组件，功能大同小异，质量参差不齐，结构缺乏包容性。
+[MornBoot][MornBoot]设计的初衷就是提供标准组件，替代这些业务组件，并提供足够高的扩展性以包容各种业务场景。
 
-Roadmap
-============
+* [ApplicationMessage][ApplicationMessage]：应用消息
+* [Notify][Notify]：系统通知
+* [OperationLog][OperationLog]：操作日志
+* [RestMessage][RestMessage]：REST消息
 
-**Short term**
+### CRUD 搬砖
 
-* support SoapUI 5.0.0, 5.1.0, 5.1.1 and 5.1.2
-* improve the ```test-multi``` goal to run [multiple soapui projects](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/TestGoalMultipleProjects). See [opened issues](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues?labels=goal%3A%3Atest-multi&page=1&state=open)
-* provide a new `JunitReportCollector` to have more details about failures (steps, assertions) in the junit report. See [#42](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues/42)
+主要提供`MVC`、`ORM`业务中，较为常见和基础的组件、规范。
 
+* [CacheGroup][CacheGroup]：分组缓存
+* [Cipher][Cipher]：消息加密
+* [JSON][JSON]：序列化
+* [ParamsValidation][ParamsValidation]：参数校验
+* [PersistFunction][PersistFunction]：持久化函数
 
-**Mid term**
+### Features 特性
 
-* improve the ```mock-as-war``` goal for generating war from [mock services](https://github.com/redfish4ktc/maven-soapui-extension-plugin/wiki/MockAsWarGoal). See [opened issues](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues?labels=goal%3A%3Amock-as-war&milestone=&page=1&state=open)
-* have a specific implementation for the ```security-test``` goal and implement improvements. See [opened issues](https://github.com/redfish4ktc/maven-soapui-extension-plugin/issues?labels=goal%3A%3Asecurity-test&milestone=&page=1&state=open)
+主要提供[MornBoot][MornBoot]特有的特性、功能，[MornBoot][MornBoot]
+中的许多组件依赖这些特性进行开发，部分特性拥有极高的扩展性，并不仅限于供[MornBoot][MornBoot]使用。部分特性的设计初衷就是让使用者依据自身业务框架进行补充和扩展。
 
-**Long term**
+* [BeanEnhance][BeanEnhance]：实例增强
+* [ExceptionInterpreter][ExceptionInterpreter]：异常解释
 
-* found a way to make report generation work without having a SoapUI installation (PRO feature)
-* add a goal to export wsdl interface from a SoapUI project
-* does not rely on SmartBear maven plugin
+### Framework 框架
 
+主要提供主流开源框架的封装、扩展，提供更具业务化的组件，提升开发效率。这些组件并不是单纯的对框架进行使用，也提供了一些实践思路，和包容性的结构，以及对框架使用过程的优化和完善。
 
+> 开源框架、中间件通常倾向于提高特性、功能、性能，而MornBoot则侧重提升框架使用体验和效率，并尽可能兼容足够多的框架能力。
 
-Supported java and maven versions
-============
-  * maven 2.2.1, 3.0.x (tested with 3.0.5), 3.1.x (tested with 3.1.1) and 3.2.x (tested with 3.2.1 and 3.2.3)
-  * java 6 and 7 (soapui needs java 6+ as of version 4.0.0), java 8 experimental support
-
-
-  
-CI Build status
-============
-
-If it is not specified, the CI job
-
-* only builds the master branch
-* uses a shared local maven repository across builds
-* is runned
-  * once a day if code modification occurs
-  * on Linux OS 
-
-
-**List of CI jobs**
-
-* maven 3.3.9, oracle jdk7 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.3.9_oracle_jdk7)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.3.9_oracle_jdk7/)
-* maven 3.2.3, openjdk6, openjdk7, oracle jdk7 and oraclejdk8 (Travis) [![Travis Build Status](https://secure.travis-ci.org/redfish4ktc/maven-soapui-extension-plugin.png?branch=master)](https://travis-ci.org/redfish4ktc/maven-soapui-extension-plugin) - builds all pushes in all branches and pull requests, uses a fresh maven local repository at each build
-* maven 3.2.3, oracle jdk7, Windows OS (AppVeyor) [![Build status](https://ci.appveyor.com/api/projects/status/l2xyyxcy5ixt7fn9?svg=true)](https://ci.appveyor.com/project/redfish4ktc/maven-soapui-extension-plugin)
-* maven 3.2.1, openjdk8 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.2.1_openjdk8/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.2.1_openjdk8/)
-* maven 3.2.1, oracle jdk6 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.2.1_oracle_jdk6/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.2.1_oracle_jdk6/)
-* maven 3.1.1, oracle jdk8 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk8)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk8/)
-* maven 3.1.1, oracle jdk7 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk7)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk7/)
-* maven 3.1.1, oracle jdk6 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk6)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.1.1_oracle_jdk6/)
-* maven 3.0.5, oracle jdk8 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.0.5_oracle_jdk8)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.0.5_oracle_jdk8/)
-* maven 3.0.5, openjdk8 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.0.5_openjdk8/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.0.5_openjdk8/)
-* maven 3.0.5, oracle jdk6 (CloudBees) [![Build Status](https://redfish4ktc-oss.ci.cloudbees.com/buildStatus/icon?job=maven-soapui-extension-plugin_maven-3.0.5_oracle_jdk6)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-3.0.5_oracle_jdk6/)
-* maven 2.2.1, openjdk8 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_openjdk8/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_openjdk8/)
-* maven 2.2.1, oracle jdk6 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_oracle_jdk6/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_oracle_jdk6/)
-* maven 2.2.1, oracle jdk7 (CloudBees) [![CloudBees Build Status](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_oracle_jdk7/badge/icon)](https://redfish4ktc-oss.ci.cloudbees.com/job/maven-soapui-extension-plugin_maven-2.2.1_oracle_jdk7/)
-
-
-[![Built on CloudBees](http://www.cloudbees.com/sites/default/files/Button-Built-on-CB-1.png)](http://www.cloudbees.com/dev.cb)
-
-[![Built on Travis](http://about.travis-ci.org/images/travis-mascot-200px.png)](https://travis-ci.org/)
-
-<!--
-http://about.travis-ci.org/images/travisci-small.png
--->
-
-License
-============
-
-maven-soapui-extension-plugin is licensed under the [Apache 2.0 software license](http://www.apache.org/licenses/LICENSE-2.0.html)
+* [JpaAssist][JpaAssist]：JPA辅助
+* [MessageQueue][MessageQueue]：消息队列
