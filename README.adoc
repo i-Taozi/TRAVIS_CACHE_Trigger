@@ -1,0 +1,197 @@
+Kilt
+====
+Marco Herrn <marco@mherrn.de>
+2018-05-03
+:compat-mode!:
+:toc:
+:homepage: https://github.com/hupfdule/kilt
+:download-page: https://github.com/hupfdule/kilt/releases
+:user_guide: https://hupfdule.github.io/kilt/user_guide.html
+:license-link: ./LICENSE.txt
+:kilt-version: 1.0.1
+
+[.float-group]
+--
+image:docs/kilt-icon.svg[Kilt - **K**ilt **I**18n, **L**10n and **T**9n,
+role="right", width="75"]
+**K**ilt **I**18n **L**10n and **T**9n
+
+Easier handling of Java i18n resource bundles.
+--
+
+
+What is Kilt
+------------
+
+Kilt is a set of small tools to ease the handling of Java i18n resource
+bundles.
+
+It can help by
+
+ - Converting i18n resource bundles to and from XLS(X) sheets for easier
+   translation by a small translation team.
+ - Providing a facade to access the entries in a i18n resource bundle
+   statically in a type safe way.
+ - Reformat and reorder entries in resource bundles to maintain a constant
+   style and order.
+
+Kilt is available as
+
+ - a standalone CLI application
+ - an ant task to be integrated with an ant-based application
+ - a maven plugin to be integrated with a maven-based application
+
+Why to use Kilt
+---------------
+
+The localizations of Java i18n resource bundles are cluttered among
+serveral files. That's no problem for software engineers, but not very
+helpful to translators without the help of additional professional
+translation tools. Therefore this tool allows to convert the Java i18n
+resource bundles to a single XLS(X) sheet to be transmitted to the
+translators. The translators can make their changes directly in the XLS(X)
+sheet and send it back to the software engineers who incorporate the
+changes back into the actual Java i18n resource bundles.
+
+Also using Java i18n resource bundles usually involves accessing them by
+string which is not type safe and requires the knowledge of the exact name
+of the key to use. Kilt can create a facade to access the resource bundle
+keys in a type-safe manner. This allows for using code completion in an
+IDE to find the available keys. It even lists the available translations in
+the generated Javadoc!
+
+The benefits of Kilt are in short form:
+
+ - Support of a fast and easy translation workflow
+ - Minimally invasive changes on import and export of translations (comments,
+   blank lines and order remain intact)
+ - Good integration into ant and maven build tools
+ - Standalone CLI tool to be used without a build tool
+ - Type safe access to translation resources via facade
+
+
+Usage example
+-------------
+
+The functionality described above can best be demonstrated by a concrete
+example. See the link:kilt-example[Example application] for a commented minimal
+application using Kilts functionality.
+
+
+Prerequisites
+-------------
+
+=== Basic prerequisites
+
+ - Java 8 or higher
+
+=== To be integrated into an ant build script
+
+When using Java 8 to 10:
+
+ - Apache ant 1.8.1 or higher
+
+When using Java 11+:
+
+ - Apache ant 1.10.6 or higher footnote:[Older version of ant can be used
+   by exporting the environment variable `ANT_OPTS="-Djdk.util.jar.enableMultiRelease=force"`]
+
+
+=== To be integrated into a maven build
+
+ - Apache maven 3.0.3 or higher
+
+
+Installation
+------------
+
+=== Maven plugin
+
+To use the maven plugin of Kilt include the following plugin section in
+the pom of your project:
+
+[source,xml,subs="verbatim,attributes"]
+----
+  <build>
+    <plugins>
+      ...
+      <plugin>
+        <groupId>de.poiu.kilt</groupId>
+        <artifactId>kilt-maven-plugin</artifactId>
+        <version>{kilt-version}</version>
+        <configuration>
+          ...
+        </configuration>
+        <executions>
+          <execution>
+            <id>i18n-facade-generation</id>
+            <goals>
+              <goal>create-facade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      ...
+    <plugins>
+  <build>
+----
+
+See {user_guide}[the Kilt User Guide] for a
+detailled description of the available goals and configuration parameters.
+
+=== Ant task
+
+To use the ant task of Kilt download the kilt-ant package from the
+{download-page}[Download] section and either use the integrated `build.xml` file or
+use it as a sample to include it in your own ant build script.
+
+You will need the accompanied properties file and lib directory as well.
+
+=== As standalone tool
+
+To use Kilt as a standalone tool download the kilt-cli package from the
+{download-page}[Download] section and unpack it to a directory of your choice.
+
+
+Usage
+-----
+
+// TODO: Hier was schnelles hinschreiben?
+
+See {user_guide}[the main user guide] for a detailled usage
+description of Kilt.
+
+
+License
+-------
+
+Kilt is licensed under the terms of the link:{license-link}[Apache license 2.0].
+
+
+History
+-------
+
+Kilt is based on https://github.com/alexchiri/i18n-binder[i18n-binder]
+which is apparently orphaned. It started as bugfixes for i18n-binder, but
+soon involved such massive changes that it was forked into a new project
+with the new name *Kilt*.
+
+The current state of Kilt doesn't share much code with the original
+anymore.
+
+It provides the following major improvements:
+
+- The facade generation was recreated from the ground up. The resulting
+  facade is now much simpler, much more concise and easier to use.
+- The commands and parameters are partly renamed (and now extended) to be
+  more concise.
+- XLS(X) files are now updated instead of recreated each time. This allows
+  manual changes to the document (like cell formatting) without losing them
+  after a new export.
+- Empty cells and default resource bundles (without a country code) in the
+  XLS(X) are now supported.
+- An additional command line application was added that does not depend on
+  ant.
+- Another runtime jar was added for using the generated facade in other
+  projects or even have a saner access to resource bundles without any
+  generated facade at all.
