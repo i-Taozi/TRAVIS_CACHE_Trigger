@@ -1,16 +1,12 @@
-# Skip maven 'target' directory
-target
-
-# plus eclipse artifacts
+bin
 .classpath
 .project
 .settings
-
-# plus intellij files
-*.ipr
-*.iws
-*.iml
+.clover
+.externalToolBuilders
+target
 .idea
-
-# and emacs temp save files
-*~
+*.iml
+**/log4j2-debug.xml
+**/.checkstyle
+*.bak
