@@ -34,3 +34,7 @@ jdk:
 matrix:
   allow_failures:
     - jdk: openjdk-ea
+
+cache:
+  directories:
+  - $HOME/.m2
