@@ -1,8 +1,15 @@
+notifications:
+  email:
+    recipients:
+      - nacos_dev@linux.alibaba.com
+      - dev-nacos@googlegroups.com
+  on_success: change
+  on_failure: always
+
 language: java
-install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true
-script: true
 
+jdk:
+  - openjdk11
+  - openjdk8
 
-cache:
-  directories:
-  - $HOME/.m2
+script:
