@@ -1,19 +1,25 @@
+sudo: required
 language: java
-sudo: false
-dist: trusty
 
 jdk:
-  - oraclejdk8
-  - oraclejdk9
-  - oraclejdk11
+  - openjdk8
+#  - openjdk11
 
 matrix:
-   allow_failures:
-      - jdk: oraclejdk11
+  allow_failures:
+    - jdk: openjdk11
+
+install:
+  - TERM=dumb ./gradlew assemble
+
+#before_script:
+#  - sleep 15
 
 script:
-  - mvn
+  - TERM=dumb ./gradlew testAll codeCoverageReport --stacktrace
 
-cache:
-  directories:
-  - $HOME/.m2
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+#after_failure:
+#  - TERM=dumb ./gradlew build testAll --stacktrace
