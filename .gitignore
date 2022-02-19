@@ -1,8 +1,4 @@
-# Compiled class file
 *.class
-
-# Log file
-*.log
 
 # BlueJ files
 *.ctxt
@@ -14,20 +10,49 @@
 *.jar
 *.war
 *.ear
-*.zip
-*.tar.gz
-*.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# IDE Files #
-*.iml
-.idea
-.idea/
-.project
-.settings
-target
+# =========================
+# Operating System Files
+# =========================
 
-.DS_Store
-.flattened-pom.xml
+# Windows
+# =========================
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# intellij
+*.iml
+*.ipr
+*.iws
+.idea/
+
+out/
+.idea/**/libraries
+/target/
+
+.classpath
+.project
+.settings/
+
+dependency-reduced-pom.xml
